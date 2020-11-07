@@ -18,7 +18,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="■■■■■■■■■■■■■■■■">로고 이미지</a>
+  <a class="navbar-brand" href="main">로고 이미지</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
    	<span class="navbar-toggler-icon"></span>
   </button>
@@ -27,10 +27,10 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item active">
-        <a class="nav-link" href="■■■■■■■■■■■■■■■■">community <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="community">community <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="■■■■■■■■■■■■■■■■">rent <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="rent">rent <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">my page(구현할경우) <span class="sr-only">(current)</span></a>
@@ -43,7 +43,7 @@
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button> 
-      <a class="login" href="■■■■■■■■■■■■■■■■">
+      <a class="login" href="login">
       <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그인</button>
   	  </a>
       
@@ -62,21 +62,21 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/camp-1.png" class="d-block w-100" alt="...">
+      <img src="../../image/camp-2.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="img/camp-2.png" class="d-block w-100" alt="...">
+      <img src="../../image/camp-2.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="img/camp-3.png" class="d-block w-100" alt="...">
+      <img src="../../image/camp-3.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

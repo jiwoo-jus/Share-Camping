@@ -15,11 +15,12 @@
     table#list{width:600px; margin:auto;}
     div#item-list { width:700px; margin:auto;}
     div.card {display:inline-block; width:200px; margin:15px;}
+    span#createArticle { float:right;}
 	</style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="■■■■■■■■■■■■■■■■">로고 이미지</a>
+  <a class="navbar-brand" href="main">로고 이미지</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -28,10 +29,10 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item active">
-        <a class="nav-link" href="■■■■■■■■■■■■■■■■">community <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="community">community <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="■■■■■■■■■■■■■■■■"><strong>rent </strong><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="rent"><strong>rent </strong><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">my page(구현할경우) <span class="sr-only">(current)</span></a>
@@ -44,7 +45,7 @@
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-      <a class="login" href="■■■■■■■■■■■■■■■■">
+      <a class="login" href="login">
       <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그인</button>
       </a>
     </form>
@@ -54,7 +55,12 @@
 <br><br><br>
 
 <div id="item-list">
-  <h3>렌트</h3>
+  <h3>렌트
+  <span id="createArticle">
+  <a href="createArticle">
+  <button type="button" id="createArticle" class="btn btn-outline-success my-2 my-sm-0">글 작성</button>
+  </a></span>
+  </h3>
   <hr>
 <div class="card" style="">
   <img src="img/camp-3.png" class="card-img-top" alt="..." width="200px" height="150px">
