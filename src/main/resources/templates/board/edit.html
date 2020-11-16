@@ -15,6 +15,7 @@
 </head>
 <body>
 <header th:insert="common/header.html"></header>
+<br>
 <div class="container">
     <form th:action="@{'/post/edit/' + ${post.id}}" method="post">
         <input type="hidden" name="_method" value="put"/>
@@ -40,7 +41,8 @@
         <div class="row">
             <div class="col-auto mr-auto"></div>
             <div class="col-auto">
-            <a href="/list">
+            <input class="btn btn-primary" type="hidden" role="uploadcare-uploader" />
+            <a href="/list">      	
             	<button class="btn btn-primary" type="submit">수정</button>
                 
              </a>
@@ -48,7 +50,17 @@
         </div>
     </form>
 </div>
-<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script>
+  UPLOADCARE_PUBLIC_KEY = '42fcaf1666f6b039f47f';
+</script>
+
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script>
+	var singleWidget = uploadcare.SingleWidget('[role=uploadcare-uploader]');
+	singleWidget.onUploadComplete(function(info){
+		document.getElementById('inputContent').value = document.getElementById('inputContent').value + '<img src="'+info.cdnUrl+'">';
+	});
+</script>
 </body>
 </html>

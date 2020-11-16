@@ -92,4 +92,18 @@ public class BoardController {
         boardService.deletePost(id);
         return "redirect:/";
     }
+
+    //테스트용 매핑
+    @GetMapping("/rentPost")
+    public String rentPost() {
+        return "board/rentPost.html";
+    }
+    @GetMapping("/rentDetail")
+    public String rentDetail() {
+        return "board/rentDetail.html";
+    }
+    @GetMapping("/myPage")
+    public String myPage() {
+        return "board/myPage.html";
+    }
 }
