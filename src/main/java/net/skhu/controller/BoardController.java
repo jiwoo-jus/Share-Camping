@@ -42,10 +42,10 @@ public class BoardController {
         return "board/login.html";
     }
 
-    @GetMapping("/signin")
+    /*@GetMapping("/signin")
     public String signin() {
         return "board/signin.html";
-    }
+    }*/
 
 
     //오리지널
