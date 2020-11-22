@@ -11,15 +11,65 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import net.skhu.dto.BoardDto;
+import net.skhu.dto.RentDto;
 import net.skhu.service.BoardService;
+import net.skhu.service.RentService;
 
 @Controller
 public class BoardController {
     private BoardService boardService;
+    private RentService rentService;
 
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, RentService rentService) {
         this.boardService = boardService;
+        this.rentService = rentService;
     }
+
+
+    @GetMapping("/rent")
+    public String rent(Model model) {
+    	List<RentDto> rentDtoList = rentService.getRentList();
+    	model.addAttribute("rentList", rentDtoList);
+    	return "board/rent.html";
+    }
+
+    @GetMapping("/rentPost")
+    public String rentPost(Model model) {
+    	return "board/rentPost.html";
+    }
+
+    @PostMapping("/rentPost")
+    public String rentPostWrite(RentDto rentDto) {
+    	rentService.savePost(rentDto);
+    	return "redirect:/rent";
+    }
+
+    @GetMapping("/rentPost/{rent_id}")
+    public String rentDetail(@PathVariable("rent_id") Long rent_id, Model model) {
+    	RentDto rentDto = rentService.getRentPost(rent_id);
+    	model.addAttribute("rentPost", rentDto);
+    	return "board/rentDetail.html";
+    }
+
+    @GetMapping("/rentPost/rentEdit/{rent_id}")
+    public String rentEdit(@PathVariable("rent_id") Long rent_id, Model model) {
+        RentDto rentDto = rentService.getRentPost(rent_id);
+        model.addAttribute("rentPost", rentDto);
+    	return "board/rentEdit.html";
+    }
+
+    @PutMapping("/rentPost/rentEdit/{rent_id}")
+    public String rentUpdate(RentDto rentDto) {
+    	rentService.savePost(rentDto);
+    	return "redirect:/rent";
+    }
+
+    @DeleteMapping("/rentPost/{rent_id}")
+    public String deleteRentPost(@PathVariable("rent_id") Long rent_id) {
+        rentService.deleteRentPost(rent_id);
+        return "redirect:/rent";
+    }
+
 
 
     @GetMapping("/")
@@ -30,11 +80,6 @@ public class BoardController {
     @GetMapping("/home")
     public String home(Model model) {
         return "board/home.html";
-    }
-
-    @GetMapping("/rent")
-    public String rent() {
-        return "board/rent.html";
     }
 
     @GetMapping("/login")
@@ -84,26 +129,27 @@ public class BoardController {
     @PutMapping("/post/edit/{id}")
     public String update(BoardDto boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     @DeleteMapping("/post/{id}")
     public String delete(@PathVariable("id") Long id) {
         boardService.deletePost(id);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
-    //테스트용 매핑
-    @GetMapping("/rentPost")
-    public String rentPost() {
-        return "board/rentPost.html";
-    }
-    @GetMapping("/rentDetail")
-    public String rentDetail() {
-        return "board/rentDetail.html";
-    }
-    @GetMapping("/myPage")
-    public String myPage() {
-        return "board/myPage.html";
-    }
+
+	/*
+	 * //테스트용 매핑
+	 *
+	 * @GetMapping("/rentPost") public String rentPost() { return
+	 * "board/rentPost.html"; }
+	 *
+	 * @GetMapping("/rentDetail") public String rentDetail() { return
+	 * "board/rentDetail.html"; }
+	 *
+	 * @GetMapping("/myPage") public String myPage() { return "board/myPage.html"; }
+	 */
+
+
 }
