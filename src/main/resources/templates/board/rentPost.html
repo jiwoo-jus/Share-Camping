@@ -79,8 +79,8 @@ input#inputPicture {
 		var singleWidget = uploadcare
 				.SingleWidget('[role=uploadcare-uploader]');
 		singleWidget.onUploadComplete(function(info) {
-			document.getElementById('inputContent').value = document
-					.getElementById('inputContent').value
+			document.getElementById('inputPicture').value = document
+					.getElementById('inputPicture').value
 					+ '<img src="'+info.cdnUrl+'">';
 		});
 	</script>

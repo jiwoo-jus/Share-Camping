@@ -82,10 +82,11 @@ public class BoardController {
         return "board/home.html";
     }
 
+    /*
     @GetMapping("/login")
     public String login() {
         return "board/login.html";
-    }
+    }*/
 
     /*@GetMapping("/signin")
     public String signin() {
@@ -147,9 +148,9 @@ public class BoardController {
 	 *
 	 * @GetMapping("/rentDetail") public String rentDetail() { return
 	 * "board/rentDetail.html"; }
-	 *
-	 * @GetMapping("/myPage") public String myPage() { return "board/myPage.html"; }
 	 */
+	@GetMapping("/myPage") public String myPage() { return "board/myPage.html"; }
+
 
 
 }
