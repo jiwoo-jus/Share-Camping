@@ -15,6 +15,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class) /* JPA에게 해당 Entity는 Auditiong 기능을 사용함을 알립니다. */
@@ -27,22 +28,24 @@ public class User {
 	@Column(length = 20, nullable = false)
 	private String user_password;
 
-	@Column(columnDefinition = "TEXT", nullable = false)
-    private String user_address;
+	@Column(length = 20, nullable = false)
+	private String user_password_check;
 
-	@Builder
-    public User(String author, String user_password, String user_address) {
+	@Column(columnDefinition = "TEXT", nullable = false)
+    private String user_adress;
+
+	@Column(length = 20, nullable = false)
+	private String user_name;
+
+	@Column(length = 20, nullable = false)
+	private String user_email;
+
+	public User(String author, String user_password, String user_password_check, String user_adress, String user_name, String user_email) {
         this.author = author;
         this.user_password = user_password;
-        this.user_address = user_address;
+        this.user_password_check = user_password_check;
+        this.user_adress = user_adress;
+        this.user_email = user_email;
+        this.user_name = user_name;
     }
-
-
-
-
-
-
-
-
-
 }

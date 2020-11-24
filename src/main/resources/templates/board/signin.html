@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<html>
+<meta charset="UTF-8">
 <head>
 <title></title>
 <link rel="stylesheet"
@@ -47,36 +47,35 @@ div.smallContainer {
 		<hr>
 		<form action="/signin" method="post" id="login">
 			<div class="form-group">
-				<label for="exampleInputId">아이디</label> <input type="text" name="author"
-					class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp">
+				<label for="exampleInputAuthor">아이디</label> <input type="text" name="author"
+					class="form-control" id="exampleInputAuthor"
+					>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputEmail1">이메일</label> <input type="email"
-					class="form-control" id="exampleInputEmail1">
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">닉네임</label> <input type="text"
-					class="form-control" id="exampleInputPassword1">
+				<label for="exampleInputName">이름</label> <input type="text"
+					class="form-control" name="user_name" id="exampleInputPassword1">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">비밀번호</label> <input
 					type="password" name="user_password" class="form-control" id="exampleInputPassword1">
 			</div>
-
 			<div class="form-group">
-				<label for="exampleInputPassword1">비밀번호 확인</label> <input
-					type="password" class="form-control" id="exampleInputPassword1">
+				<label for="exampleInputPassword2">비밀번호 확인</label> <input
+					type="password" name="user_password_check" class="form-control" id="exampleInputPassword1">
 			</div>
-
 			<div class="form-group">
-				<label for="exampleInputPassword1">지역</label> <input type="text" name="user_address"
-					class="form-control" id="exampleInputPassword1">
+				<label for="exampleInputEmail">이메일</label> <input type="email"
+					class="form-control" name="user_email" id="exampleInputEmail" aria-describedby="emailHelp">
+			</div>
+			<div class="form-group">
+				<label for="exampleAdress">지역</label> <input type="text" name="user_adress"
+					class="form-control" id="exampleInputAdress">
 			</div>
 
 			<button type="submit" class="btn btn-primary">회원가입</button>
 
 		</form>
+		<span th:text="${errorMsg}" ></span>
 	</div>
 </body>
 </html>

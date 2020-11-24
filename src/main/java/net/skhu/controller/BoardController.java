@@ -82,19 +82,6 @@ public class BoardController {
         return "board/home.html";
     }
 
-    /*
-    @GetMapping("/login")
-    public String login() {
-        return "board/login.html";
-    }*/
-
-    /*@GetMapping("/signin")
-    public String signin() {
-        return "board/signin.html";
-    }*/
-
-
-    //오리지널
     @GetMapping("/list")
     public String list(Model model) {
         List<BoardDto> boardDtoList = boardService.getBoardList();
