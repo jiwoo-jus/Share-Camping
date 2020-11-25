@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import net.skhu.domain.entity.Login;
+import net.skhu.domain.entity.User;
 import net.skhu.service.LoginService;
 
 @SessionAttributes("user")
@@ -22,12 +22,9 @@ public class LoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(Login user,Model model) {
-		Login findUser = loginService.getUser(user);
+	public String login(User user,Model model) {
+		User findUser = loginService.getUser(user);
 
-		if(findUser == null) {
-			return "board/rent.html";
-		}
 		if(findUser != null
 				&& findUser.getUser_password().equals(user.getUser_password())) {
 			model.addAttribute("user", findUser);

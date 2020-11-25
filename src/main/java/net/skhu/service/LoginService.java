@@ -1,7 +1,7 @@
 package net.skhu.service;
 
-import net.skhu.domain.entity.Login;
+import net.skhu.domain.entity.User;
 
 public interface LoginService {
-	Login getUser(Login user);
+	User getUser(User user);
 }
