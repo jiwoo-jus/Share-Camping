@@ -20,8 +20,8 @@
             <a class="nav-link" href="/myPage">마이페이지</a>
         </div>
     </div>
-		<h6 th:if="${session['user'].author != 'null'}">
-		<font color="red" th:text="${session['user'].author}">
+		<h6 th:if="${session['user']?.author != 'null'}">
+		<font color="red" th:text="${session['user']?.author}">
 		</font>님 환영합니다.&nbsp;
 		</h6>
     <form class="form-inline my-2 my-lg-0">
