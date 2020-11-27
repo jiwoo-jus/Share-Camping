@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import net.skhu.domain.entity.User;
 import net.skhu.service.LoginService;
@@ -37,5 +38,10 @@ public class LoginController {
 	@GetMapping("/index")
 	public String indexView() {
 		return "board/index.html";
+	}
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		return "redirect:index";
 	}
 }
