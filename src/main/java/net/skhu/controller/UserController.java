@@ -54,7 +54,7 @@ public class UserController {
 		}
 		model.addAttribute("userDto", userDto);
 		model.addAttribute("errorMsg", errorMsg);
-		return "board/signin.html";
+		return "board/index.html";
 	}
 
 	@RequestMapping("/signin_succes")

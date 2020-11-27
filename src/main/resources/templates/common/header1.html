@@ -20,17 +20,19 @@
             <a class="nav-link" href="/myPage">마이페이지</a>
         </div>
     </div>
-
+		<h6 th:if="${session['user'].author != 'null'}">
+		<font color="red" th:text="${session['user'].author}">
+		</font>님 환영합니다.&nbsp;
+		</h6>
     <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
        
         
         <a class="login" href="/login">
-        <h6><font color="red" th:text="${session['user'].author}"></font>님 환영합니다.</h6>
+        
+      
             <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
         </a>
-
+	
     </form>
     
     

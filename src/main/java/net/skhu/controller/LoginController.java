@@ -28,7 +28,7 @@ public class LoginController {
 		if(findUser != null
 				&& findUser.getUser_password().equals(user.getUser_password())) {
 			model.addAttribute("user", findUser);
-			return "board/list.html";
+			return "board/home.html";
 		}else {
 			return "redirect:index";
 		}

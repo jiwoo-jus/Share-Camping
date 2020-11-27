@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import net.skhu.dto.BoardDto;
 import net.skhu.dto.RentDto;
 import net.skhu.service.BoardService;
 import net.skhu.service.RentService;
 
+
+@SessionAttributes("user")
 @Controller
 public class BoardController {
     private BoardService boardService;
     private RentService rentService;
+
+
 
     public BoardController(BoardService boardService, RentService rentService) {
         this.boardService = boardService;
@@ -74,7 +79,7 @@ public class BoardController {
 
     @GetMapping("/")
     public String enter(Model model) {
-        return "board/home.html";
+        return "board/index.html";
     }
 
     @GetMapping("/home")
