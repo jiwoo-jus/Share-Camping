@@ -93,19 +93,27 @@ input#submitComment {
 		</div>
 		<div class="comment">
 			<table class="table">
+				
 				<thead>
 					<tr class="text-center">
-						<th scope="col">댓글내용</th>
+						
+						<th scope="col">내용</th>
 						<th scope="col">작성자</th>
-						<th scope="col">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="text-center">
+					<!-- <tr class="text-center">
 						<td><span>댓글테이블내용조회</span></td>
-						<td><a th:href="@{'/post/' + ${post.id}}"> <span>작성자조회(기능추가할지말지)</span>
+						<td><a href="#"> <span>작성자조회(기능추가할지말지)</span>
 						</a></td>
 						<td><span>작성일조회</span></td>
+					</tr>-->
+					<tr class="text-center" th:each="communityComment : ${post.communityComment}"
+						 >
+						
+						<td><span th:text="${communityComment.community_comment_content}"></span></td>
+						<td><span th:text="${communityComment.author}"></span></td>
+
 					</tr>
 				</tbody>
 			</table>

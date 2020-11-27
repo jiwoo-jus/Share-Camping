@@ -22,6 +22,7 @@ public class BoardDto {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
+
     public Board toEntity() {
         Board build = Board.builder()
                 .id(id)

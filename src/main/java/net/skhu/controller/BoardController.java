@@ -2,6 +2,7 @@ package net.skhu.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,24 +13,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import net.skhu.domain.entity.Board;
+import net.skhu.domain.entity.Rent;
+import net.skhu.domain.entity.RentComment;
 import net.skhu.domain.entity.User;
+import net.skhu.domain.repository.BoardRepository;
+import net.skhu.domain.repository.CommunityCommentRepository;
+import net.skhu.domain.repository.RentCommentRepository;
+import net.skhu.domain.repository.RentRepository;
 import net.skhu.dto.BoardDto;
-import net.skhu.dto.RentDto;
 import net.skhu.service.BoardService;
-import net.skhu.service.RentService;
+
 
 
 @SessionAttributes("user")
 @Controller
 public class BoardController {
     private BoardService boardService;
-    private RentService rentService;
+    @Autowired RentRepository rentRepository;
+    @Autowired RentCommentRepository rentCommentRepository;
+    @Autowired BoardRepository boardRepository;
+    @Autowired CommunityCommentRepository communityCommentRepository;
 
-
-
-    public BoardController(BoardService boardService, RentService rentService) {
+    public BoardController(BoardService boardService) {
         this.boardService = boardService;
-        this.rentService = rentService;
+
     }
 
    /* @ModelAttribute("user")
@@ -39,8 +47,8 @@ public class BoardController {
     }*/
     @GetMapping("/rent")
     public String rent(Model model) {
-    	List<RentDto> rentDtoList = rentService.getRentList();
-    	model.addAttribute("rentList", rentDtoList);
+
+    	model.addAttribute("rentList", rentRepository.findAll());
     	return "board/rent.html";
     }
 
@@ -50,34 +58,46 @@ public class BoardController {
     }
 
     @PostMapping("/rentPost")
-    public String rentPostWrite(@ModelAttribute("user") User user, RentDto rentDto) {
-    	rentService.savePost(rentDto);
+    public String rentPostWrite(@ModelAttribute("user") User user, Rent rentDto) {
+
+    	rentRepository.save(rentDto);
+
+    	return "redirect:/rent";
+    }
+    @PostMapping("/rentCommentPost")
+    public String rentCommentWrite(RentComment rentComment) {
+
+    	rentCommentRepository.save(rentComment);
     	return "redirect:/rent";
     }
 
     @GetMapping("/rentPost/{rent_id}")
     public String rentDetail(@PathVariable("rent_id") Long rent_id, Model model) {
-    	RentDto rentDto = rentService.getRentPost(rent_id);
-    	model.addAttribute("rentPost", rentDto);
+    	Rent rent = rentRepository.getOne(rent_id);
+
+    	model.addAttribute("rentPost", rent);
+
+
     	return "board/rentDetail.html";
     }
 
     @GetMapping("/rentPost/rentEdit/{rent_id}")
     public String rentEdit(@PathVariable("rent_id") Long rent_id, Model model) {
-        RentDto rentDto = rentService.getRentPost(rent_id);
-        model.addAttribute("rentPost", rentDto);
+    	Rent rent = rentRepository.getOne(rent_id);
+        model.addAttribute("rentPost", rent);
     	return "board/rentEdit.html";
     }
 
     @PutMapping("/rentPost/rentEdit/{rent_id}")
-    public String rentUpdate(RentDto rentDto) {
-    	rentService.savePost(rentDto);
+    public String rentUpdate(Rent rentDto) {
+    	rentRepository.save(rentDto);
+
     	return "redirect:/rent";
     }
 
     @DeleteMapping("/rentPost/{rent_id}")
     public String deleteRentPost(@PathVariable("rent_id") Long rent_id) {
-        rentService.deleteRentPost(rent_id);
+    	rentRepository.deleteById(rent_id);
         return "redirect:/rent";
     }
 
@@ -113,8 +133,13 @@ public class BoardController {
 
     @GetMapping("/post/{id}")
     public String detail(@PathVariable("id") Long id, Model model) {
-        BoardDto boardDto = boardService.getPost(id);
-        model.addAttribute("post", boardDto);
+
+    	Board board= boardRepository.getOne(id);
+
+    	model.addAttribute("post", board);
+
+
+
         return "board/detail.html";
     }
 
@@ -133,6 +158,8 @@ public class BoardController {
 
     @DeleteMapping("/post/{id}")
     public String delete(@PathVariable("id") Long id) {
+
+
         boardService.deletePost(id);
         return "redirect:/list";
     }

@@ -1,12 +1,14 @@
 package net.skhu.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -45,6 +47,9 @@ public class Board {
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
+    @OneToMany(mappedBy="board")
+	List<CommunityComment> communityComment;
 
     @Builder
     public Board(Long id, String author, String title, String content) {
