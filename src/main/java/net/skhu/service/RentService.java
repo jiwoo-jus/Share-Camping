@@ -40,6 +40,8 @@ public class RentService {
                     .rent_title(rent.getRent_title())
                     .rent_content(rent.getRent_content())
                     .rent_date(rent.getRent_date())
+                    .picture(rent.getPicture())
+
                     .build();
             rentDtoList.add(rentDto);
         }
@@ -56,6 +58,8 @@ public class RentService {
 				.rent_title(rent.getRent_title())
 				.rent_content(rent.getRent_content())
 				.rent_date(rent.getRent_date())
+				.picture(rent.getPicture())
+
 				.build();
 		return rentDto;
 	}

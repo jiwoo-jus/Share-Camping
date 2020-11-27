@@ -23,6 +23,7 @@
 	crossorigin="anonymous"></script>
 
 <style>
+
 button#login {
 	margin-left: 5px;
 }
@@ -84,15 +85,35 @@ div.card {
 		<hr>
 		<div class="card" style="" th:each="rent : ${rentList}">
 			<a th:href="@{'/rentPost/' + ${rent.rent_id}}">
-			<img src="images/camp-3.png" class="card-img-top" alt="..."
-				width="200px" height="150px">
+			
+			<p th:if="${rent.picture} != null"
+			 id="content1" class="card-text" th:text="${rent.picture}"></p>
+		
+			
+			<script>
+					var searchIndex = 0;
+
+					var content = document.getElementById('content1').innerHTML;
+					
+					var firstIndex = content.indexOf("&lt;img", searchIndex);
+					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
+					var imgContent = content.slice(firstIndex + 7, lastIndex);
+					if (firstIndex != -1)
+						document.write("<img id=fromContent width='190px' height='150px'"+imgContent+">");
+	
+					searchIndex = lastIndex;
+					i = lastIndex;
+				</script>
+				</a>
+				
 			<div class="card-body">
 				<h7 class="card-title" th:text=${rent.rent_title} ></h7>
 			</div>
-			</a>
+			
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item" th:text="${#temporals.format(rent.rent_date, 'yyyy-MM-dd HH:mm')}"></li>
 				<li class="list-group-item" th:text="${rent.author}"></li>
+				<li class="list-group-item" th:text="${rent.price}"></li>
 			</ul>
 
 	

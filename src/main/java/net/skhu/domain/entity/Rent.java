@@ -34,6 +34,10 @@ public class Rent {
 	@Column(length = 100, nullable = false)
     private String rent_title;
 
+
+	@Column(length = 100, nullable = false)
+    private String picture;
+
 	@Column(columnDefinition = "TEXT", nullable = false)
     private String rent_content;
 
@@ -43,12 +47,16 @@ public class Rent {
 
 
 
+
     @Builder
-    public Rent(Long rent_id, String author, String rent_title, String rent_content) {
+    public Rent(Long rent_id, String author, String rent_title, String rent_content, String picture
+    	) {
         this.rent_id = rent_id;
         this.author = author;
         this.rent_title = rent_title;
         this.rent_content = rent_content;
+        this.picture = picture;
+
     }
 
 }

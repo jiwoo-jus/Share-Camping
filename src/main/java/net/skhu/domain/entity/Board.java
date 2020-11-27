@@ -21,6 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class) /* JPA에게 해당 Entity는 Auditiong 기능을 사용함을 알립니다. */
 public class Board {
@@ -29,7 +30,7 @@ public class Board {
     @GeneratedValue
     private Long id;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 100, nullable = false)
     private String author;
 
     @Column(length = 100, nullable = false)

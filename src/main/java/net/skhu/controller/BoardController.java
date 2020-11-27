@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import net.skhu.domain.entity.User;
 import net.skhu.dto.BoardDto;
 import net.skhu.dto.RentDto;
 import net.skhu.service.BoardService;
@@ -30,7 +32,11 @@ public class BoardController {
         this.rentService = rentService;
     }
 
+   /* @ModelAttribute("user")
+    public User setUser() {
+    	return new User();
 
+    }*/
     @GetMapping("/rent")
     public String rent(Model model) {
     	List<RentDto> rentDtoList = rentService.getRentList();
@@ -44,7 +50,7 @@ public class BoardController {
     }
 
     @PostMapping("/rentPost")
-    public String rentPostWrite(RentDto rentDto) {
+    public String rentPostWrite(@ModelAttribute("user") User user, RentDto rentDto) {
     	rentService.savePost(rentDto);
     	return "redirect:/rent";
     }
