@@ -34,7 +34,7 @@ public class UserService {
                 .author(user.getAuthor())
                 .user_password(user.getUser_password())
                 .user_password_check(user.getUser_password_check())
-                .user_adress(user.getUser_adress())
+                .user_address(user.getUser_address())
                 .user_email(user.getUser_email())
                 .user_name(user.getUser_name())
 
