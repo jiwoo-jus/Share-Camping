@@ -27,8 +27,8 @@
        
         
         <a class="login" href="/login">
-   
-            <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그인</button>
+        <h6><font color="red" th:text="${session['user'].author}"></font>님 환영합니다.</h6>
+            <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
         </a>
 
     </form>

@@ -10,10 +10,12 @@
     <link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
 </head>
 <body>
-<header th:insert="common/header.html"></header>
+<header th:insert="common/header1.html"></header>
 <div class="container">
 	<br>
+	
     <h3>커뮤니티</h3>
+    
     <hr>
     <table class="table">
         <thead class="thead-light">
@@ -24,8 +26,10 @@
             <th scope="col">작성일</th>
         </tr>
         </thead>
+  
         <tbody>
-        <tr class="text-center" th:each="post : ${postList}">
+      	  <tr class="text-center" th:each="post : ${postList}">
+        
             <th scope="row">
                 <span th:text="${post.id}"></span>
             </th>

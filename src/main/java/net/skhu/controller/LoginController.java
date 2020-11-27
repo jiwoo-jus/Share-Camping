@@ -30,7 +30,12 @@ public class LoginController {
 			model.addAttribute("user", findUser);
 			return "board/list.html";
 		}else {
-			return "redirect:login";
+			return "redirect:index";
 		}
+	}
+
+	@GetMapping("/index")
+	public String indexView() {
+		return "board/index.html";
 	}
 }
