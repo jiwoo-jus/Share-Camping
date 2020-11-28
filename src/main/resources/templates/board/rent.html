@@ -38,6 +38,8 @@ div.card {
 	width: 200px;
 	margin: 15px;
 }
+img.picture { margin-left:4px;}
+div.card:hover {box-shadow: 1px 1px 1px gray;}
 </style>
 </head>
 <body>
@@ -87,27 +89,34 @@ div.card {
 			<a th:href="@{'/rentPost/' + ${rent.rent_id}}">
 			
 			<p th:if="${rent.picture} != null"
-			 id="content1" class="card-text" th:text="${rent.picture}"></p>
+			 th:id="${rent.rent_id}" class="card-text" th:text="${rent.picture}"></p>
 		
 			
-			<script>
+			<script th:inline="javascript">
+			/*<![CDATA[*/
 					var searchIndex = 0;
-
-					var content = document.getElementById('content1').innerHTML;
+					
+					var content1 = document.getElementById(/*[[${rent.rent_id}]]*/);
+					var content = content1.innerHTML;
+					
+					
+					
 					
 					var firstIndex = content.indexOf("&lt;img", searchIndex);
 					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
 					var imgContent = content.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
-						document.write("<img id=fromContent width='190px' height='150px'"+imgContent+">");
-	
+						document.write("<img class='picture' width='190px' height='150px'"+imgContent+">");
+		
+					content1.innerHTML = "";
 					searchIndex = lastIndex;
 					i = lastIndex;
-				</script>
+			/*]]>*/
+			</script>
 				</a>
 				
 			<div class="card-body">
-				<h7 class="card-title" th:text=${rent.rent_title} ></h7>
+				<h4 class="card-title" th:text=${rent.rent_title} ></h4>
 			</div>
 			
 			<ul class="list-group list-group-flush">
@@ -127,6 +136,7 @@ div.card {
 		</div>
 
 	</div>
+	<br>
 
 
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>

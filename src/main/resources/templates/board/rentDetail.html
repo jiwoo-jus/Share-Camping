@@ -53,32 +53,45 @@ input#submitComment {
 					th:text="${rentPost?.rent_content}"></p>
 
 				<p id="content12" class="card-text" th:text="${rentPost.picture}"></p>
-				<script>
+				
+				<script th:inline="javascript">
+			/*<![CDATA[*/
 					var searchIndex = 0;
-
-					var content = document.getElementById('content12').innerHTML;
-
+					
+					var content1 = document.getElementById("content12");
+					var content = content1.innerHTML;
+					
+					
+					
+					
 					var firstIndex = content.indexOf("&lt;img", searchIndex);
 					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
 					var imgContent = content.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
-						document.write("<img id=fromContent height='400px' width='500px'"+imgContent+">");
-
+						document.write("<img class='picture' width='500px' height='400px'"+imgContent+">");
+		
+					content1.innerHTML = "";
 					searchIndex = lastIndex;
 					i = lastIndex;
-				</script>
+			/*]]>*/
+			</script>
 			</div>
 		</div>
-
-		<div th:if="${rentPost.author} == ${session['user']?.author}"
+		
+		<div 
 			class="row mt-3">
 			<div class="col-auto mr-auto"></div>
 			<div class="col-auto">
+				<a class="btn btn-success"
+					th:href="@{'/rent'}"
+					role="button">목록으로</a>
+			</div>
+			<div th:if="${rentPost.author} == ${session['user']?.author}" class="col-auto">
 				<a class="btn btn-info"
 					th:href="@{'/rentPost/rentEdit/' + ${rentPost.rent_id}}"
 					role="button">수정</a>
 			</div>
-			<div class="col-auto">
+			<div th:if="${rentPost.author} == ${session['user']?.author}" class="col-auto">
 				<form id="delete-form"
 					th:action="@{'/rentPost/' + ${rentPost.rent_id}}" method="post">
 					<input type="hidden" name="_method" value="delete" />

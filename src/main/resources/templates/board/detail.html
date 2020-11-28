@@ -33,6 +33,7 @@ input#submitComment {
 	margin-bottom: 80px;
 	margin-left: 20px;
 }
+
 </style>
 </head>
 <body>
@@ -52,26 +53,35 @@ input#submitComment {
 				<script>
 					var searchIndex = 0;
 
-					var content = document.getElementById('content1').innerHTML;
+					var content = document.getElementById('content1');
+					var content1 = content.innerHTML;
 
-					var firstIndex = content.indexOf("&lt;img", searchIndex);
-					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
-					var imgContent = content.slice(firstIndex + 7, lastIndex);
+					var firstIndex = content1.indexOf("&lt;img", searchIndex);
+					var lastIndex = content1.indexOf("&gt;", searchIndex + 4);
+					var imgContent = content1.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
 						document.write("<img id=fromContent"+imgContent+">");
-
+	
+					content.innerHTML = "";
 					searchIndex = lastIndex;
 					i = lastIndex;
 				</script>
+				
+				
 			</div>
 		</div>
-		<div th:if= "${post.author} == ${session['user']?.author}" class="row mt-3">
+		<div  class="row mt-3">
 			<div class="col-auto mr-auto"></div>
 			<div class="col-auto">
+				<a class="btn btn-success"
+					th:href="@{'/list'}"
+					role="button">목록으로</a>
+			</div>
+			<div th:if= "${post.author} == ${session['user']?.author}" class="col-auto">
 				<a class="btn btn-info" th:href="@{'/post/edit/' + ${post.id}}"
 					role="button">수정</a>
 			</div>
-			<div class="col-auto">
+			<div th:if= "${post.author} == ${session['user']?.author}" class="col-auto">
 				<form id="delete-form" th:action="@{'/post/' + ${post.id}}"
 					method="post">
 					<input type="hidden" name="_method" value="delete" />
