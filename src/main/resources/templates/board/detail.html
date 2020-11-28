@@ -81,9 +81,16 @@ input#submitComment {
 		</div>
 		<hr>
 		<div class="inputComment">
-			<form action="/post" method="post">
+			<form action="/communityCommentPost" method="post">
 				<div class="col-sm">
-					<textarea type="text" name="content" class="form-control"
+					<textarea type="text" name="author" class="form-control" rows="1"
+					
+						  th:text="${session['user']?.author}"  id="inputAuthor" readonly></textarea>
+					
+					<textarea type="text" name="board_id" class="form-control" rows="1"
+						  th:text="${post.id}"  id="inputAuthor" readonly></textarea>
+						  
+					<textarea type="text" name="community_comment_content" class="form-control"
 						id="inputComment" rows="3"></textarea>
 					<input class="btn btn-primary" type="submit" role="button"
 						value="댓글작성" id="submitComment">

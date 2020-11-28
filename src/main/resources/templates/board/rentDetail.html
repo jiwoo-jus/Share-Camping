@@ -62,7 +62,7 @@ input#submitComment {
 					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
 					var imgContent = content.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
-						document.write("<img id=fromContent"+imgContent+">");
+						document.write("<img id=fromContent height='400px' width='500px'"+imgContent+">");
 
 					searchIndex = lastIndex;
 					i = lastIndex;
@@ -96,8 +96,9 @@ input#submitComment {
 					<textarea type="text" name="author" class="form-control" rows="1"
 					
 						  th:text="${session['user']?.author}"  id="inputAuthor" readonly></textarea>
+					
 					<textarea type="text" name="rent_id" class="form-control" rows="1"
-						  th:text="${rentPost}"  id="inputAuthor" readonly></textarea>
+						  th:text="${rentPost.rent_id}"  id="inputAuthor" readonly></textarea>
 						  
 					<textarea type="text" name="rent_comment_content" class="form-control"
 						id="inputComment" rows="3"></textarea>
@@ -118,8 +119,7 @@ input#submitComment {
 				</thead>
 				<tbody>
 					
-					<tr class="text-center" th:each="rentComment : ${rentPost.rentComment}"
-						 >
+					<tr class="text-center" th:each="rentComment : ${rentPost.rentComment}">
 						
 						<td><span th:text="${rentComment.rent_comment_content}"></span></td>
 						<td><span th:text="${rentComment.author}"></span></td>

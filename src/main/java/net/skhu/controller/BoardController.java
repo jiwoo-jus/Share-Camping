@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import net.skhu.domain.entity.Board;
+import net.skhu.domain.entity.CommunityComment;
 import net.skhu.domain.entity.Rent;
 import net.skhu.domain.entity.RentComment;
 import net.skhu.domain.entity.User;
@@ -65,10 +66,12 @@ public class BoardController {
     	return "redirect:/rent";
     }
     @PostMapping("/rentCommentPost")
-    public String rentCommentWrite(RentComment rentComment) {
+    public String rentCommentWrite(@ModelAttribute("rentPost") Rent rent, RentComment rentComment) {
+    	rentComment.setRent(rent);
 
     	rentCommentRepository.save(rentComment);
-    	return "redirect:/rent";
+
+    	return "redirect:/rentPost/"+rent.getRent_id();
     }
 
     @GetMapping("/rentPost/{rent_id}")
@@ -92,11 +95,12 @@ public class BoardController {
     public String rentUpdate(Rent rentDto) {
     	rentRepository.save(rentDto);
 
-    	return "redirect:/rent";
-    }
+    	return "redirect:/rentPost/"+rentDto.getRent_id();
+    	    }
 
     @DeleteMapping("/rentPost/{rent_id}")
     public String deleteRentPost(@PathVariable("rent_id") Long rent_id) {
+
     	rentRepository.deleteById(rent_id);
         return "redirect:/rent";
     }
@@ -129,6 +133,15 @@ public class BoardController {
     public String write(BoardDto boardDto) {
         boardService.savePost(boardDto);
         return "redirect:/";
+    }
+
+    @PostMapping("/communityCommentPost")
+    public String communityCommentWrite(@ModelAttribute("post") Board board, CommunityComment communityComment) {
+
+    	communityComment.setBoard(board);
+
+    	communityCommentRepository.save(communityComment);
+    	return "redirect:/list";
     }
 
     @GetMapping("/post/{id}")

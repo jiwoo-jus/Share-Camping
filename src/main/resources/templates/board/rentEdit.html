@@ -45,6 +45,15 @@ input#inputRent_content {
 						id="inputAuthor" th:value="${rentPost.author}">
 				</div>
 			</div>
+			
+			<div class="form-group row">
+				<label for="inputAuthor" class="col-sm-2 col-form-label"><strong>사진파일</strong></label>
+				<div class="col-sm-10">
+					<input type="text" name="picture" class="form-control"
+						id="inputPicture" th:value="${rentPost.picture}">
+				</div>
+			</div>
+			
 			<div class="form-group row">
 				<label for="inputRent_content" class="col-sm-2 col-form-label"><strong>내용</strong></label>
 				<div class="col-sm-10">
@@ -73,9 +82,8 @@ input#inputRent_content {
 		var singleWidget = uploadcare
 				.SingleWidget('[role=uploadcare-uploader]');
 		singleWidget.onUploadComplete(function(info) {
-			document.getElementById('inputContent').value = document
-					.getElementById('inputContent').value
-					+ '<img src="'+info.cdnUrl+'">';
+			document.getElementById('inputPicture').value = 
+					'<img src="'+info.cdnUrl+'">';
 		});
 	</script>
 </body>

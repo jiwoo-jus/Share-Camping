@@ -31,6 +31,7 @@ public class RentComment {
 	@Column(length = 10, nullable = false)
     private String author;
 
+
 	@ManyToOne
 	@JoinColumn(name = "rent_id")
 	Rent rent;
