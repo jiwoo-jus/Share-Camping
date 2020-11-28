@@ -8,7 +8,8 @@
 </div>-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/home">SHARE CAMPING</a>
+    <a class="navbar-brand" href="/home">
+    <span><img src="images/header-icon.png"></span>SHARE CAMPING</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,13 +21,13 @@
             <a class="nav-link" href="/myPage">마이페이지</a>
         </div>
     </div>
-		<h6 th:if="${session['user']?.author != 'null'}">
-		<font color="red" th:text="${session['user']?.author}">
-		</font>님 환영합니다.&nbsp;
-		</h6>
+		
     <form class="form-inline my-2 my-lg-0">
        
-        
+        <h6 th:if="${session['user']?.author != 'null'}">
+		<font color="red" th:text="${session['user']?.user_name}">
+		</font>님 환영합니다.&nbsp;
+		</h6>
         <a class="login" th:href="@{/logout}">
             <button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
         </a>

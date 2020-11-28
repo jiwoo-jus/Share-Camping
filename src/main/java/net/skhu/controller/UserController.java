@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import net.skhu.domain.repository.UserRepository;
 import net.skhu.dto.UserDto;
 import net.skhu.service.UserService;
 
 @Controller
 public class UserController {
 	private UserService userService;
+	private UserRepository userRepository;
 
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -48,6 +50,8 @@ public class UserController {
 			errorMsg = "비밀번호 불일치";
 		else if (userDto.getUser_email() == null || userDto.getUser_email().length() == 0)
 			errorMsg = "이메일 주소를 입력하세요";
+
+
 		else {
 			session.setAttribute("userDto", userDto);
 			return "board/signin_success";

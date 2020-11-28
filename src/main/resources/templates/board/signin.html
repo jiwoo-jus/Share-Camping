@@ -36,6 +36,8 @@ div.smallContainer {
 	width: 750px;
 	margin: auto;
 }
+div#messageContainer { margin:auto; text-align:center;}
+span#message { font-weight:bold; color:red;}
 </style>
 </head>
 <body>
@@ -71,11 +73,12 @@ div.smallContainer {
 				<label for="exampleAdress">지역</label> <input type="text" name="user_address"
 					class="form-control" id="exampleInputAdress">
 			</div>
-
+			<div id ="messageContainer">
+		<span id="message" th:text="${errorMsg}" ></span></div>
 			<button type="submit" class="btn btn-primary">회원가입</button>
 
 		</form>
-		<span th:text="${errorMsg}" ></span>
+		
 	</div>
 </body>
 </html>

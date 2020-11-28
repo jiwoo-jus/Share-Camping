@@ -31,12 +31,14 @@ public class LoginController {
 			model.addAttribute("user", findUser);
 			return "board/home.html";
 		}else {
-			return "redirect:index";
+			String loginErrorMsg = "아이디나 비밀번호가 일치하지 않습니다";
+			model.addAttribute("loginErrorMsg", loginErrorMsg);
+			return "board/index.html";
 		}
 	}
 
 	@GetMapping("/index")
-	public String indexView() {
+	public String indexView(Model model) {
 		return "board/index.html";
 	}
 	@GetMapping("/logout")
