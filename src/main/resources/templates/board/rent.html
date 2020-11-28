@@ -22,8 +22,21 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
-<style>
+<script th:inline="javascript">
+			/*<![CDATA[*/
+					function testLogin(){
+					if(/*[[${session['user']?.author}]]*/){
+						var index = window.open(/*[[@{/rentPost}]]*/,"_self");
+					}
+					else{
+						alert("로그인 후 이용하세요.");
+						var index = window.open(/*[[@{/index}]]*/,"_self");
+					}
+				}	
+			/*]]>*/
+</script>
 
+<style>
 button#login {
 	margin-left: 5px;
 }
@@ -41,6 +54,7 @@ div.card {
 img.picture { margin-left:4px;}
 div.card:hover {box-shadow: 1px 1px 1px gray;}
 </style>
+
 </head>
 <body>
 	<header th:insert="common/header1.html"></header>
@@ -131,7 +145,7 @@ div.card:hover {box-shadow: 1px 1px 1px gray;}
 <div class="row">
 			<div class="col-auto mr-auto"></div>
 			<div class="col-auto">
-				<a class="btn btn-primary" th:href="@{/rentPost}" role="button">글쓰기</a>
+				<a class="btn btn-primary" th:onclick="testLogin()" role="button">글쓰기</a>
 			</div>
 		</div>
 

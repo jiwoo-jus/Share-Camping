@@ -48,7 +48,6 @@ public class BoardController {
     }*/
     @GetMapping("/rent")
     public String rent(Model model) {
-
     	model.addAttribute("rentList", rentRepository.findAll());
     	return "board/rent.html";
     }
@@ -132,7 +131,7 @@ public class BoardController {
     @PostMapping("/post")
     public String write(BoardDto boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     @PostMapping("/communityCommentPost")
