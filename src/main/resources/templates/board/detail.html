@@ -97,7 +97,8 @@ input#submitComment {
 					
 						  th:text="${session['user']?.author}"  id="inputAuthor" readonly></textarea>
 					
-					<textarea type="text" name="board_id" class="form-control" rows="1"
+					<!--  <textarea type="text" name="board_id" class="form-control" rows="1" -->
+						  <textarea type="text" name="id" class="form-control" rows="1"
 						  th:text="${post.id}"  id="inputAuthor" readonly></textarea>
 						  
 					<textarea type="text" name="community_comment_content" class="form-control"
@@ -109,8 +110,7 @@ input#submitComment {
 			</form>
 		</div>
 		<div class="comment">
-			<table class="table">
-				
+			<table class="table">	
 				<thead>
 					<tr class="text-center">
 						
@@ -125,8 +125,7 @@ input#submitComment {
 						</a></td>
 						<td><span>작성일조회</span></td>
 					</tr>-->
-					<tr class="text-center" th:each="communityComment : ${post.communityComment}"
-						 >
+					<tr class="text-center" th:each="communityComment : ${post.communityComment}">
 						
 						<td><span th:text="${communityComment.community_comment_content}"></span></td>
 						<td><span th:text="${communityComment.author}"></span></td>

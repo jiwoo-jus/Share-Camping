@@ -11,12 +11,12 @@
     <script th:inline="javascript">
 			/*<![CDATA[*/
 					function testLogin(){
-					if(/*[[${session['user']?.author}]]*/){
-						var index = window.open(/*[[@{/post}]]*/,"_self");
+					if(/*[[${session['user']?.author}]]*/""){
+						var index = window.open(/*[[@{/post}]]*/"_self");
 					}
 					else{
 						alert("로그인 후 이용하세요.");
-						var index = window.open(/*[[@{/index}]]*/,"_self");
+						var index = window.open(/*[[@{/index}]]*/"_self");
 					}
 				}	
 			/*]]>*/
