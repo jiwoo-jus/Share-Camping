@@ -137,13 +137,10 @@ public class BoardController {
     @PostMapping("/communityCommentPost")
     public String communityCommentWrite(@ModelAttribute("post") Board board, CommunityComment communityComment) {
 
-    	System.out.println(board.getId());
-    	System.out.println(communityComment);
-    	
     	communityComment.setBoard(board);
 
     	communityCommentRepository.save(communityComment);
-    	
+
     	//return "redirect:/list";
     	return "redirect:/post/" + board.getId();
     }
