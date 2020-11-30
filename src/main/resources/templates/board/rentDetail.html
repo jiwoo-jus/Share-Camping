@@ -16,6 +16,15 @@
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 <style>
+
+textarea#inputAuthor{
+ 	background-color:white;
+	width:15%
+}
+textarea#inputRent_id{
+	visibility: hidden
+}
+
 img#fromContent {
 	width: 450p;
 	height: 450px;
@@ -106,12 +115,14 @@ input#submitComment {
 		<div class="inputComment">
 			<form action="/rentCommentPost" method="post">
 				<div class="col-sm">
+				
+				<textarea type="text" name="rent_id" class="form-control" rows="1"
+						  th:text="${rentPost.rent_id}"  id="inputRent_id" readonly></textarea>
 					<textarea type="text" name="author" class="form-control" rows="1"
 					
 						  th:text="${session['user']?.author}"  id="inputAuthor" readonly></textarea>
 					
-					<!-- <textarea type="text" name="rent_id" class="form-control" rows="1"
-						  th:text="${rentPost.rent_id}"  id="inputAuthor" readonly></textarea> -->
+					
 						  
 					<textarea type="text" name="rent_comment_content" class="form-control"
 						id="inputComment" rows="3"></textarea>
