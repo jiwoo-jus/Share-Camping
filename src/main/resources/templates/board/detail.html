@@ -53,16 +53,27 @@ input#submitComment {
 				<script>
 					var searchIndex = 0;
 
-					var content = document.getElementById();
+					var content = document.getElementById("content1");
+					
 					var content1 = content.innerHTML;
-
+					var contentLength = content1.length;
+					
+					
 					var firstIndex = content1.indexOf("&lt;img", searchIndex);
 					var lastIndex = content1.indexOf("&gt;", searchIndex + 4);
 					var imgContent = content1.slice(firstIndex + 7, lastIndex);
+					
+					var a = content1.lastIndexOf("&lt;img");
+					var b = content1.lastIndexOf("&gt;");
+					
+					var front = content1.slice(0, a);
+					var rear = content1.slice(b+4, contentLength);
+					var resetString = front.concat(" ",rear);
+					
 					if (firstIndex != -1)
 						document.write("<img id=fromContent"+imgContent+">");
 	
-					content.innerHTML = "";
+					content.innerHTML = resetString;
 					searchIndex = lastIndex;
 					i = lastIndex;
 				</script>

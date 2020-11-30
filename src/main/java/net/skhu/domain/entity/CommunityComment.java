@@ -23,7 +23,7 @@ import lombok.Setter;
 public class CommunityComment {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 
 	@Column(length = 10, nullable = false)
     private String community_comment_content;
@@ -35,5 +35,8 @@ public class CommunityComment {
 	@JoinColumn(name = "board_id")
 	Board board;
 
+	public Long getBoardId() {
+		return board.getId();
+	}
 
 }
