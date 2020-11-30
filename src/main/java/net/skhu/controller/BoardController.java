@@ -2,6 +2,8 @@ package net.skhu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,9 @@ import net.skhu.domain.repository.BoardRepository;
 import net.skhu.domain.repository.CommunityCommentRepository;
 import net.skhu.domain.repository.RentCommentRepository;
 import net.skhu.domain.repository.RentRepository;
+import net.skhu.domain.repository.UserRepository;
 import net.skhu.dto.BoardDto;
+import net.skhu.dto.UserDto;
 import net.skhu.service.BoardService;
 
 
@@ -40,6 +44,18 @@ public class BoardController {
         this.boardService = boardService;
 
     }
+
+    private UserRepository userRepository;
+
+	@GetMapping("/myPage")
+    public String myPage(Model model, UserDto userDto, HttpSession session) {
+		model.addAttribute("userDto", userDto);
+		List<BoardDto> boardDtoList = boardService.getBoardList();
+        model.addAttribute("postList", boardDtoList);
+    	model.addAttribute("rentList", rentRepository.findAll());
+    	return "board/myPage.html";
+    }
+
 
    /* @ModelAttribute("user")
     public User setUser() {
@@ -190,8 +206,5 @@ public class BoardController {
 	 * @GetMapping("/rentDetail") public String rentDetail() { return
 	 * "board/rentDetail.html"; }
 	 */
-	@GetMapping("/myPage") public String myPage() { return "board/myPage.html"; }
-
-
 
 }

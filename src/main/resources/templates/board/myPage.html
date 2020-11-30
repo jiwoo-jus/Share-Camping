@@ -18,6 +18,12 @@
 					}
 			/*]]>*/
 </script>
+<style>
+.myList {
+    list-style: none;
+    padding-left: 0px;
+}
+</style>
 </head>
 <body>
 <header th:insert="common/header1.html"></header>
@@ -29,17 +35,19 @@
     <table class="table">
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">#</th>
+            <!-- <th scope="col">#</th> -->
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
         </tr>
         </thead>
         <tbody>
+        <h5>community</h5>
         <tr class="text-center" th:each="post : ${postList}">
-            <th scope="row">
+        <li class="myList" th:if="${session['user'].author == post.author}">
+           <!--  <th scope="row">
                 <span th:text="${post.id}"></span>
-            </th>
+            </th> -->
             <td>
                 <a th:href="@{'/post/' + ${post.id}}">
                     <span th:text="${post.title}"></span>
@@ -51,7 +59,42 @@
             <td>
                 <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
             </td>
+           </li>
+           </tr>
+           </tbody>
+           </table>
+           
+           
+        <table class="table">
+        <thead class="thead-light">
+        <tr class="text-center">
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
         </tr>
+        </thead>
+        <tbody>
+        <h5>rent</h5>
+        <tr class="text-center" th:each="rent : ${rentList}">
+        <li class="myList" th:if="${session['user'].author == rent.author}">
+           <!--  <th scope="row">
+                <span th:text="${post.id}"></span>
+            </th> -->
+            <td>
+                <a th:href="@{'/rentPost/' + ${rent.rent_id}}">
+                    <span th:text="${rent.rent_title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${rent.author}"></span>
+            </td>
+            <td>
+                <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+           </li>
+        </tr>
+        
         </tbody>
     </table>
     <br>
