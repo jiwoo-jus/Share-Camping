@@ -46,7 +46,7 @@ input#submitComment {
 					th:text="@{${post.title} + ' - ' + ${post.author}}"></h5>
 				<p class="card-text">
 					<small class="text-muted"
-						th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></small>
+						th:text="${#temporals.format(post.created_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
 				<p id="content1" class="card-text" th:text="${post.content}"></p>
 
