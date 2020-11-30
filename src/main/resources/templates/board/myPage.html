@@ -25,7 +25,10 @@
 	<br>
     <h3>마이페이지</h3>
     <hr>
-    <h5>내가 쓴 글</h5>
+    <div class="post">
+    <br>
+    <h3>글</h3>
+    <h5>커뮤니티 글</h5>
     <table class="table">
         <thead class="thead-light">
         <tr class="text-center">
@@ -36,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="text-center" th:each="post : ${postList}">
+        <tr class="text-center" th:each="post : ${postList}" th:if="${post.author} == ${session['user']?.author}">
             <th scope="row">
                 <span th:text="${post.id}"></span>
             </th>
@@ -54,30 +57,98 @@
         </tr>
         </tbody>
     </table>
-    <br>
-    <h5>내가 쓴 댓글</h5>
- 	<div class="comment">
-    	<table class="table" >
+    <h5>렌트 글</h5>
+    <table class="table">
         <thead class="thead-light">
-        <tr class="text-center" >
-            <th scope="col">댓글내용</th>
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="text-center" >
-            <td>       
-				<span >댓글테이블내용조회</span>
-             
+        <tr class="text-center" th:each="rent : ${rentList}" th:if="${rent.author} == ${session['user']?.author}">
+            <th scope="row">
+                <span th:text="${rent.rent_id}"></span>
+            </th>
+            <td>
+                <a th:href="@{'/rentPost/' + ${rent.rent_id}}">
+                    <span th:text="${rent.rent_title}"></span>
+                </a>
             </td>
             <td>
-               
-                    <span >작성자조회(기능추가할지말지)</span>
-               
+                <span th:text="${rent.author}"></span>
             </td>
             <td>
-                <span >작성일조회</span>
+                <span th:text="${#temporals.format(rent.rent_date, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <br>
+    <h3>댓글</h3>
+ 	<div class="comment">
+    	<h5>커뮤니티 댓글</h5>
+    <table class="table">
+        <thead class="thead-light">
+        <tr class="text-center">
+            <th scope="col">글 제목</th>
+            <th scope="col">댓글 번호</th>
+            <th scope="col">댓글 내용</th>
+            <th scope="col">작성자</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" th:each="communityComment : ${communityCommentList}" th:if="${communityComment.author} == ${session['user']?.author}">
+            <th scope="row">
+            <a th:href="@{'/post/' + ${communityComment.board.id}}">
+                    <span th:text="${communityComment.board.title}"></span>
+                </a>
+                
+            </th>
+            <td>
+                <span th:text="${communityComment.id}"></span>
+            </td>
+            <td>
+                <span th:text="${communityComment.community_comment_content}"></span>
+            </td>
+            <td>
+                <span th:text="${communityComment.author}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h5>렌트 댓글</h5>
+    
+    <table class="table">
+        <thead class="thead-light">
+        <tr class="text-center">
+            <th scope="col">글 제목</th>
+            <th scope="col">댓글 번호</th>
+            <th scope="col">댓글 내용</th>
+            <th scope="col">작성자</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" th:each="rentComment : ${rentCommentList}" th:if="${rentComment.author} == ${session['user']?.author}">
+            <th scope="row">
+            <a th:href="@{'/rentPost/' + ${rentComment.rent.rent_id}}">
+                    <span th:text="${rentComment.rent.rent_title}"></span>
+                </a>
+                
+            </th>
+            <td>
+                <span th:text="${rentComment.id}"></span>
+            </td>
+            <td>
+                <span th:text="${rentComment.rent_comment_content}"></span>
+            </td>
+            <td>
+                <span th:text="${rentComment.author}"></span>
             </td>
         </tr>
         </tbody>

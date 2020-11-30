@@ -136,11 +136,11 @@ public class BoardController {
 
     @PostMapping("/communityCommentPost")
     public String communityCommentWrite(@ModelAttribute("post") Board board, CommunityComment communityComment) {
-
+    	communityComment.setId(99999);
     	communityComment.setBoard(board);
 
     	communityCommentRepository.save(communityComment);
-    	return "redirect:/list";
+    	return "redirect:/post/" + board.getId();
     }
 
     @GetMapping("/post/{id}")
@@ -188,7 +188,16 @@ public class BoardController {
 	 * @GetMapping("/rentDetail") public String rentDetail() { return
 	 * "board/rentDetail.html"; }
 	 */
-	@GetMapping("/myPage") public String myPage() { return "board/myPage.html"; }
+	@GetMapping("/myPage") public String myPage(Model model) {
+		 model.addAttribute("postList", boardRepository.findAll());
+		    model.addAttribute("rentList", rentRepository.findAll());
+		    model.addAttribute("communityCommentList", communityCommentRepository.findAll());
+		    model.addAttribute("rentCommentList", rentCommentRepository.findAll());
+
+
+
+		return "board/myPage.html";
+		}
 
 
 
