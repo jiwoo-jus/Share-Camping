@@ -21,12 +21,13 @@
 }
 
 #carouselExampleSlidesOnly, .main-form {
-	margin-top: 200px;
+	margin-top: 100px;
 }
 
 #carouselExampleSlidesOnly {
 	max-width: 500px;
 	max-height: 500px;
+	
 }
 
 .main-form {
@@ -38,12 +39,23 @@
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 }
+div.carousel-inner{
+	border-radius:0px 15px 15px 0px;
 
+}
 .login-logo {
 	display: flex;
+	
 	margin-left: -75px;
 }
-
+div#logo { 
+	vertical-align:center;
+	}
+img#logo { 
+	margin-top:150px;
+	width: 600px;
+	height:600px;
+}
 span#message {
 	font-weight: bold;
 	color: red;
@@ -53,8 +65,8 @@ span#message {
 </head>
 
 <body class="main">
-	<div class="images/login-logo">
-		<img src="images/index-logo.png">
+	<div id="logo" class="images/login-logo">
+		<img id="logo" src="images/index-logo.png">
 	</div>
 	<form action="/login" method="post" class="main-form">
 
@@ -71,7 +83,7 @@ span#message {
 		<div>
 			<span id="message" th:text="${loginErrorMsg}"></span>
 		</div>
-		<br> <input type="submit" class="btn btn-primary" value="로그인">
+		<input type="submit" class="btn btn-primary" value="로그인">
 		<a href="/signin">
 			<button type="button" class="btn btn-primary">회원가입</button>
 		</a>
