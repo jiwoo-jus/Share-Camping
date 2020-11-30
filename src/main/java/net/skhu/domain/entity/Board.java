@@ -43,7 +43,7 @@ public class Board {
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime createdDate;
+    private LocalDateTime created_date;
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;

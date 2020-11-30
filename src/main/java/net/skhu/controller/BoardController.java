@@ -23,6 +23,8 @@ import net.skhu.domain.repository.CommunityCommentRepository;
 import net.skhu.domain.repository.RentCommentRepository;
 import net.skhu.domain.repository.RentRepository;
 import net.skhu.dto.BoardDto;
+import net.skhu.mapper.BoardMapper;
+import net.skhu.mapper.RentMapper;
 import net.skhu.service.BoardService;
 
 
@@ -35,9 +37,12 @@ public class BoardController {
     @Autowired RentCommentRepository rentCommentRepository;
     @Autowired BoardRepository boardRepository;
     @Autowired CommunityCommentRepository communityCommentRepository;
+    @Autowired BoardMapper boardMapper;
+    @Autowired RentMapper rentMapper;
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
+
 
     }
 
@@ -49,6 +54,7 @@ public class BoardController {
     @GetMapping("/rent")
     public String rent(Model model) {
     	model.addAttribute("rentList", rentRepository.findAll());
+    	model.addAttribute("rentList", rentMapper.findAll());
     	return "board/rent.html";
     }
 
@@ -118,8 +124,11 @@ public class BoardController {
 
     @GetMapping("/list")
     public String list(Model model) {
+    	model.addAttribute("postList", boardMapper.findAll());
         List<BoardDto> boardDtoList = boardService.getBoardList();
-        model.addAttribute("postList", boardDtoList);
+       model.addAttribute("postList", boardDtoList);
+
+       model.addAttribute("postList", boardMapper.findAll());
         return "board/list.html";
     }
 
@@ -189,8 +198,11 @@ public class BoardController {
 	 * "board/rentDetail.html"; }
 	 */
 	@GetMapping("/myPage") public String myPage(Model model) {
+
 		 model.addAttribute("postList", boardRepository.findAll());
+		 model.addAttribute("postList", boardMapper.findAll());
 		    model.addAttribute("rentList", rentRepository.findAll());
+		    model.addAttribute("rentList", rentMapper.findAll());
 		    model.addAttribute("communityCommentList", communityCommentRepository.findAll());
 		    model.addAttribute("rentCommentList", rentCommentRepository.findAll());
 

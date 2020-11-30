@@ -38,7 +38,7 @@ public class BoardService {
                     .author(board.getAuthor())
                     .title(board.getTitle())
                     .content(board.getContent())
-                    .createdDate(board.getCreatedDate())
+                    .createdDate(board.getCreated_date())
                     .build();
             boardDtoList.add(boardDto);
         }
@@ -54,7 +54,7 @@ public class BoardService {
                 .author(board.getAuthor())
                 .title(board.getTitle())
                 .content(board.getContent())
-                .createdDate(board.getCreatedDate())
+                .createdDate(board.getCreated_date())
                 .build();
         return boardDto;
     }
