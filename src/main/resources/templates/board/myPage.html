@@ -29,10 +29,17 @@
     <br>
     <h3>글</h3>
     <h5>커뮤니티 글</h5>
+   
     <table class="table">
+     <colgroup>
+    	<col width="10%">
+    	<col width="45%">
+    	<col width="15%">
+    	<col width="25%">
+    </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">#</th>
+            <th scope="col">번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
@@ -59,9 +66,15 @@
     </table>
     <h5>렌트 글</h5>
     <table class="table">
+    <colgroup>
+    	<col width="10%">
+    	<col width="45%">
+    	<col width="15%">
+    	<col width="25%">
+    </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">#</th>
+            <th scope="col">번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
@@ -92,10 +105,15 @@
  	<div class="comment">
     	<h5>커뮤니티 댓글</h5>
     <table class="table">
+    <colgroup>
+    	<col width="25%">
+    	<col width="45%">
+    	<col width="25%">
+    </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
             <th scope="col">글 제목</th>
-            <th scope="col">댓글 번호</th>
+            <!-- <th scope="col">댓글 번호</th> -->
             <th scope="col">댓글 내용</th>
             <th scope="col">작성자</th>
             
@@ -109,9 +127,9 @@
                 </a>
                 
             </th>
-            <td>
+            <!-- <td>
                 <span th:text="${communityComment.id}"></span>
-            </td>
+            </td> -->
             <td>
                 <span th:text="${communityComment.community_comment_content}"></span>
             </td>
@@ -124,10 +142,15 @@
     <h5>렌트 댓글</h5>
     
     <table class="table">
+    <colgroup>
+    	<col width="25%">
+    	<col width="45%">
+    	<col width="25%">
+    </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
             <th scope="col">글 제목</th>
-            <th scope="col">댓글 번호</th>
+            <!-- <th scope="col">댓글 번호</th> -->
             <th scope="col">댓글 내용</th>
             <th scope="col">작성자</th>
             
@@ -141,9 +164,9 @@
                 </a>
                 
             </th>
-            <td>
+            <!-- <td>
                 <span th:text="${rentComment.id}"></span>
-            </td>
+            </td> -->
             <td>
                 <span th:text="${rentComment.rent_comment_content}"></span>
             </td>
