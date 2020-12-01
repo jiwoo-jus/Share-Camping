@@ -109,8 +109,8 @@ public class BoardController {
 
     @DeleteMapping("/rentPost/{rent_id}")
     public String deleteRentPost(@PathVariable("rent_id") Long rent_id) {
+    	rentMapper.deleteRent(rent_id);
 
-    	rentRepository.deleteById(rent_id);
         return "redirect:/rent";
     }
 
@@ -195,7 +195,7 @@ public class BoardController {
     public String delete(@PathVariable("id") Long id) {
 
 
-        boardService.deletePost(id);
+        boardMapper.deleteBoard(id);
         return "redirect:/list";
     }
 

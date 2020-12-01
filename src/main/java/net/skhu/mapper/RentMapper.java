@@ -2,6 +2,7 @@ package net.skhu.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,4 +16,9 @@ public interface RentMapper {
           + "ORDER BY rent_id DESC " )
     List<Rent> findAll();
 
+    @Delete("DELETE FROM rent_comment "
+    		+ "WHERE rent_id = #{id};"
+    		+"DELETE FROM rent "
+    		+"WHERE rent_id = #{id}")
+    void deleteRent(Long id);
 }
