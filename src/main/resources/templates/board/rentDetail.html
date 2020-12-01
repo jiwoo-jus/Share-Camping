@@ -58,8 +58,8 @@ input#submitComment {
 						th:text="${#temporals.format(rentPost?.rent_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
 
-				<p id="content1" class="card-text"
-					th:text="${rentPost?.rent_content}"></p>
+				<pre><p id="content1" class="card-text"
+					th:text="${rentPost?.rent_content}"></p></pre>
 
 				<p id="content12" class="card-text" th:text="${rentPost.picture}"></p>
 				
@@ -149,7 +149,7 @@ input#submitComment {
 					
 					<tr class="text-center" th:each="rentComment : ${rentPost.rentComment}">
 						
-						<td><span th:text="${rentComment.rent_comment_content}"></span></td>
+						<td><pre><span th:text="${rentComment.rent_comment_content}"></span></pre></td>
 						<td><span th:text="${rentComment.author}"></span></td>
 
 					</tr>
