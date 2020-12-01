@@ -128,9 +128,14 @@ public class BoardController {
 
     @GetMapping("/list")
     public String list(Model model) {
+
+
     	model.addAttribute("postList", boardMapper.findAll());
         List<BoardDto> boardDtoList = boardService.getBoardList();
        model.addAttribute("postList", boardDtoList);
+
+       int boardPostCount = boardMapper.getBoardCount();
+       model.addAttribute("boardPostCount", boardPostCount);
 
        model.addAttribute("postList", boardMapper.findAll());
         return "board/list.html";

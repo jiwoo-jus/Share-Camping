@@ -21,6 +21,9 @@
 				}	
 			/*]]>*/
 </script>
+<style>
+	ol, li {list-style-type: decimal;}
+</style>
 </head>
 <body>
 <header th:insert="common/header1.html"></header>
@@ -33,7 +36,7 @@
     <table class="table">
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">#</th>
+            <th scope="col">번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
@@ -41,10 +44,18 @@
         </thead>
   
         <tbody>
-      	  <tr class="text-center" th:each="post : ${postList}">
-        
-            <th scope="row">
-                <span th:text="${post.id}"></span>
+
+        <script th:inline="javascript">
+    		/*<![CDATA[*/
+    		var query = /*[[${boardPostCount}]]*/
+    		/*]]>*/
+		</script>
+
+	 <tr class="text-center" th:each="post : ${postList}">        
+            <th>
+                <script th:inline="javascript">
+				    document.write(query--,'<br>');
+				</script>
             </th>
             <td>
                 <a th:href="@{'/post/' + ${post.id}}">

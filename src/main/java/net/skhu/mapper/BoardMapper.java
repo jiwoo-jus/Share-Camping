@@ -15,4 +15,8 @@ public interface BoardMapper {
           + "ORDER BY id DESC " )
     List<Board> findAll();
 
+    @Select("SELECT count(title)	"
+    		+ "FROM `example`.`board` " )
+    int getBoardCount();
+
 }
