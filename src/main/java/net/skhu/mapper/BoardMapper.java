@@ -16,7 +16,7 @@ public interface BoardMapper {
     List<Board> findAll();
 
     @Select("SELECT count(title)	"
-    		+ "FROM `example`.`board` " )
+    		+ "FROM board " )
     int getBoardCount();
 
 }
