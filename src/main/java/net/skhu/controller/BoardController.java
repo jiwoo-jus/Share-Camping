@@ -39,6 +39,86 @@ public class BoardController {
 	@Autowired
 	RentMapper rentMapper;
 
+
+
+	/*********************************************** 메인페이지 *******************************************************/
+	@GetMapping("/")
+	public String enter(Model model) {
+		return "board/index.html";
+	}
+
+	@GetMapping("/home")
+	public String home(Model model) {
+		return "board/home.html";
+	}
+
+
+
+
+	/*********************************************** 커뮤니티페이지 *******************************************************/
+	@GetMapping("/list")
+	public String list(Model model) {
+		int boardPostCount = boardMapper.getBoardCount();
+		model.addAttribute("boardPostCount", boardPostCount);
+		model.addAttribute("postList", boardMapper.findAll());
+		return "board/list.html";
+	}
+
+	@GetMapping("/post")
+	public String post() {
+		return "board/post.html";
+	}
+
+	@PostMapping("/post")
+	public String write(Board board) {
+		boardRepository.save(board);
+
+		return "redirect:/list";
+	}
+
+	@PostMapping("/communityCommentPost")
+	public String communityCommentWrite(@ModelAttribute("post") Board board, CommunityComment communityComment) {
+		communityComment.setId(99999);
+		communityComment.setBoard(board);
+		communityCommentRepository.save(communityComment);
+
+		return "redirect:/post/" + board.getId();
+	}
+
+	@GetMapping("/post/{id}")
+	public String detail(@PathVariable("id") Long id, Model model) {
+		Board board = boardRepository.getOne(id);
+		model.addAttribute("post", board);
+
+		return "board/detail.html";
+	}
+
+	@GetMapping("/post/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		Board board = boardRepository.getOne(id);
+		model.addAttribute("post", board);
+
+		return "board/edit.html";
+	}
+
+	@PutMapping("/post/edit/{id}")
+	public String update(Board board) {
+		boardRepository.save(board);
+
+		return "redirect:/post/" + board.getId();
+
+	}
+
+	@DeleteMapping("/post/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		boardMapper.deleteBoard(id);
+
+		return "redirect:/list";
+	}
+
+
+
+	/*********************************************** 렌트페이지 *******************************************************/
 	@GetMapping("/rent")
 	public String rent(Model model) {
 		String nullimage = "<img src=\"images/nullimage.png\">";
@@ -98,77 +178,10 @@ public class BoardController {
 		return "redirect:/rent";
 	}
 
-	@GetMapping("/")
-	public String enter(Model model) {
-		return "board/index.html";
-	}
 
-	@GetMapping("/home")
-	public String home(Model model) {
-		return "board/home.html";
-	}
 
-	@GetMapping("/list")
-	public String list(Model model) {
-		int boardPostCount = boardMapper.getBoardCount();
-		model.addAttribute("boardPostCount", boardPostCount);
-		model.addAttribute("postList", boardMapper.findAll());
-		return "board/list.html";
-	}
 
-	@GetMapping("/post")
-	public String post() {
-		return "board/post.html";
-	}
-
-	@PostMapping("/post")
-	public String write(Board board) {
-		boardRepository.save(board);
-
-		return "redirect:/list";
-	}
-
-	@PostMapping("/communityCommentPost")
-	public String communityCommentWrite(@ModelAttribute("post") Board board, CommunityComment communityComment) {
-		communityComment.setId(99999);
-		communityComment.setBoard(board);
-
-		communityCommentRepository.save(communityComment);
-
-		return "redirect:/post/" + board.getId();
-	}
-
-	@GetMapping("/post/{id}")
-	public String detail(@PathVariable("id") Long id, Model model) {
-		Board board = boardRepository.getOne(id);
-		model.addAttribute("post", board);
-
-		return "board/detail.html";
-	}
-
-	@GetMapping("/post/edit/{id}")
-	public String edit(@PathVariable("id") Long id, Model model) {
-		Board board = boardRepository.getOne(id);
-		model.addAttribute("post", board);
-
-		return "board/edit.html";
-	}
-
-	@PutMapping("/post/edit/{id}")
-	public String update(Board board) {
-		boardRepository.save(board);
-
-		return "redirect:/post/" + board.getId();
-
-	}
-
-	@DeleteMapping("/post/{id}")
-	public String delete(@PathVariable("id") Long id) {
-		boardMapper.deleteBoard(id);
-
-		return "redirect:/list";
-	}
-
+	/*********************************************** 마이페이지 *******************************************************/
 	@GetMapping("/myPage")
 	public String myPage(Model model) {
 		model.addAttribute("postList", boardRepository.findAll());
