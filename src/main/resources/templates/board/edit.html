@@ -72,7 +72,7 @@ input#inputContent {
 	</div>
 
 	<script>
-		UPLOADCARE_PUBLIC_KEY = '42fcaf1666f6b039f47f';
+		UPLOADCARE_PUBLIC_KEY = '5f305d8b7760c78073fa';
 	</script>
 	<script
 		src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
@@ -80,9 +80,8 @@ input#inputContent {
 		var singleWidget = uploadcare
 				.SingleWidget('[role=uploadcare-uploader]');
 		singleWidget.onUploadComplete(function(info) {
-			document.getElementById('inputContent').value = document
-					.getElementById('inputContent').value
-					+ '<img src="'+info.cdnUrl+'">';
+			document.getElementById('inputPicture').value = 
+					'<img src="'+info.cdnUrl+'">';
 		});
 	</script>
 </body>

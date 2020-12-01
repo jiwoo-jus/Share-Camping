@@ -183,10 +183,11 @@ public class BoardController {
     }
 
     @PutMapping("/post/edit/{id}")
-    public String update(BoardDto boardDto) {
-        boardService.savePost(boardDto);
+    public String update(Board board) {
+    	boardRepository.save(board);
 
-        return "redirect:/post/"+boardDto.getId();
+
+        return "redirect:/post/"+board.getId();
 
     }
 
