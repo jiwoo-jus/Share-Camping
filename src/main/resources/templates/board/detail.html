@@ -123,9 +123,7 @@ input#submitComment {
                <tr class="text-center" th:each="communityComment : ${post.communityComment}">
 
                   <td>
-                     <pre>
-                        <span th:text="${communityComment.community_comment_content}"></span>
-                     </pre>
+                     <pre><span th:text="${communityComment.community_comment_content}"></span></pre>
                   </td>
                   <td>
                      <span th:text="${communityComment.author}"></span>

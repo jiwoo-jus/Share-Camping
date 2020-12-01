@@ -26,7 +26,7 @@ public class UserController {
 	@PostMapping("/signin")
 	public String singin(Model model, User userDto, HttpSession session) {
 		userRepository.save(userDto);
-
+		model.addAttribute("userDto", userDto);
 		String errorMsg = null;
 		if (userDto.getAuthor() == null || userDto.getAuthor().length() == 0)
 			errorMsg = "사용자 아이디를 입력하세요";
@@ -46,7 +46,6 @@ public class UserController {
 			session.setAttribute("userDto", userDto);
 			return "board/signin_success";
 		}
-		model.addAttribute("userDto", userDto);
 		model.addAttribute("errorMsg", errorMsg);
 
 		return "board/signin.html";
