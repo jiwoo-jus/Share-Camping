@@ -32,24 +32,24 @@
    
     <table class="table">
      <colgroup>
-    	<col width="10%">
-    	<col width="45%">
+    	<col width="55%">
     	<col width="15%">
-    	<col width="25%">
+    	<col width="20%">
     </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
         </tr>
         </thead>
         <tbody>
+        
         <tr class="text-center" th:each="post : ${postList}" th:if="${post.author} == ${session['user']?.author}">
-            <th scope="row">
+           <!--  <th scope="row">
+            
                 <span th:text="${post.id}"></span>
-            </th>
+            </th> -->
             <td>
                 <a th:href="@{'/post/' + ${post.id}}">
                     <span th:text="${post.title}"></span>
@@ -67,14 +67,14 @@
     <h5>렌트 글</h5>
     <table class="table">
     <colgroup>
-    	<col width="10%">
-    	<col width="45%">
+    	<!-- <col width="10%"> -->
+    	<col width="55%">
     	<col width="15%">
-    	<col width="25%">
+    	<col width="20%">
     </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
-            <th scope="col">번호</th>
+           <!--  <th scope="col">번호</th> -->
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
@@ -82,9 +82,9 @@
         </thead>
         <tbody>
         <tr class="text-center" th:each="rent : ${rentList}" th:if="${rent.author} == ${session['user']?.author}">
-            <th scope="row">
+            <!-- <th scope="row">
                 <span th:text="${rent.rent_id}"></span>
-            </th>
+            </th> -->
             <td>
                 <a th:href="@{'/rentPost/' + ${rent.rent_id}}">
                     <span th:text="${rent.rent_title}"></span>
@@ -106,9 +106,9 @@
     	<h5>커뮤니티 댓글</h5>
     <table class="table">
     <colgroup>
-    	<col width="25%">
-    	<col width="45%">
-    	<col width="25%">
+    	<col width="30%">
+    	<col width="50%">
+    	<col width="15%">
     </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
@@ -143,9 +143,9 @@
     
     <table class="table">
     <colgroup>
-    	<col width="25%">
-    	<col width="45%">
-    	<col width="25%">
+    	<col width="30%">
+    	<col width="50%">
+    	<col width="15%">
     </colgroup>
         <thead class="thead-light">
         <tr class="text-center">
