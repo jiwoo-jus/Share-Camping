@@ -53,6 +53,10 @@ public class BoardController {
     }*/
     @GetMapping("/rent")
     public String rent(Model model) {
+
+    	String nullimage = "<img src=\"images/nullimage.png\">";
+		model.addAttribute("nullimage", nullimage);
+
     	model.addAttribute("rentList", rentRepository.findAll());
     	model.addAttribute("rentList", rentMapper.findAll());
     	return "board/rent.html";

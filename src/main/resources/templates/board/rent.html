@@ -101,11 +101,10 @@ div.card:hover {box-shadow: 1px 1px 1px gray;}
 		<hr>
 		<div class="card" style="" th:each="rent : ${rentList}">
 			<a th:href="@{'/rentPost/' + ${rent.rent_id}}">
+			 
+			 <p th:id="${rent.rent_id}" class="card-text" th:text="${rent.picture == ''} ? ${nullimage} : ${rent.picture}"></p>
 			
-			<p th:if="${rent.picture} != null"
-			 th:id="${rent.rent_id}" class="card-text" th:text="${rent.picture}"></p>
-		
-			
+			 
 			<script th:inline="javascript">
 			/*<![CDATA[*/
 					var searchIndex = 0;
