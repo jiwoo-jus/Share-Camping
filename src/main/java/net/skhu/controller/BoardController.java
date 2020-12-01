@@ -147,8 +147,9 @@ public class BoardController {
     }
 
     @PostMapping("/post")
-    public String write(BoardDto boardDto) {
-        boardService.savePost(boardDto);
+    public String write(Board board) {
+    	boardRepository.save(board);
+
         return "redirect:/list";
     }
 
@@ -175,8 +176,9 @@ public class BoardController {
 
     @GetMapping("/post/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
-        BoardDto boardDto = boardService.getPost(id);
-        model.addAttribute("post", boardDto);
+    	Board board = boardRepository.getOne(id);
+
+        model.addAttribute("post", board);
         return "board/edit.html";
     }
 

@@ -38,6 +38,9 @@ public class Board {
     @Column(length = 100, nullable = false)
     private String title;
 
+    @Column(length = 100, nullable = false)
+    private String picture;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 

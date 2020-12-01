@@ -57,34 +57,29 @@ input#submitComment {
 						th:text="${#temporals.format(post.created_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
 				<pre><p id="content1" class="card-text" th:text="${post.content}"></p></pre>
+				<p id="content12" class="card-text" th:text="${post.picture}"></p>
 
-				<script>
+				<script th:inline="javascript">
+			/*<![CDATA[*/
 					var searchIndex = 0;
-
-					var content = document.getElementById("content1");
 					
-					var content1 = content.innerHTML;
-					var contentLength = content1.length;
+					var content1 = document.getElementById("content12");
+					var content = content1.innerHTML;
 					
 					
-					var firstIndex = content1.indexOf("&lt;img", searchIndex);
-					var lastIndex = content1.indexOf("&gt;", searchIndex + 4);
-					var imgContent = content1.slice(firstIndex + 7, lastIndex);
 					
-					var a = content1.lastIndexOf("&lt;img");
-					var b = content1.lastIndexOf("&gt;");
 					
-					var front = content1.slice(0, a);
-					var rear = content1.slice(b+4, contentLength);
-					var resetString = front.concat(" ",rear);
-					
+					var firstIndex = content.indexOf("&lt;img", searchIndex);
+					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
+					var imgContent = content.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
-						document.write("<img id=fromContent"+imgContent+">");
-	
-					content.innerHTML = resetString;
+						document.write("<img class='picture' width='500px' height='400px'"+imgContent+">");
+		
+					content1.innerHTML = "";
 					searchIndex = lastIndex;
 					i = lastIndex;
-				</script>
+			/*]]>*/
+			</script>
 				
 				
 			</div>
