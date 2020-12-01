@@ -3,39 +3,29 @@ package net.skhu.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import net.skhu.domain.entity.User;
 import net.skhu.domain.repository.UserRepository;
-import net.skhu.dto.UserDto;
-import net.skhu.service.UserService;
 
 @Controller
 public class UserController {
-	private UserService userService;
-	private UserRepository userRepository;
-
-	public UserController(UserService userService) {
-		this.userService = userService;
-	}
+	@Autowired
+	UserRepository userRepository;
 
 	@GetMapping("/signin")
 	public String signin() {
 		return "board/signin.html";
 	}
-	/*
-	 * @PostMapping("/signin")
-	 * public String singin(UserDto userDto) {
-	 * userService.savePost(userDto); return "redirect:/"; }
-	 */
 
 	@PostMapping("/signin")
-	public String singin(Model model, UserDto userDto, HttpSession session) {
-
-		userService.savePost(userDto);
+	public String singin(Model model, User userDto, HttpSession session) {
+		userRepository.save(userDto);
 
 		String errorMsg = null;
 		if (userDto.getAuthor() == null || userDto.getAuthor().length() == 0)
