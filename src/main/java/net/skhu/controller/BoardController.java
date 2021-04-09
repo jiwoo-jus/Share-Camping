@@ -1,5 +1,7 @@
 package net.skhu.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import net.skhu.domain.entity.Board;
@@ -20,6 +25,7 @@ import net.skhu.domain.repository.BoardRepository;
 import net.skhu.domain.repository.CommunityCommentRepository;
 import net.skhu.domain.repository.RentCommentRepository;
 import net.skhu.domain.repository.RentRepository;
+import net.skhu.dto.BoardDto;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.RentMapper;
 
@@ -56,6 +62,7 @@ public class BoardController {
 
 
 	/*********************************************** 커뮤니티페이지 *******************************************************/
+	
 	@GetMapping("/list")
 	public String list(Model model) {
 		int boardPostCount = boardMapper.getBoardCount();
@@ -63,7 +70,17 @@ public class BoardController {
 		model.addAttribute("postList", boardMapper.findAll());
 		return "board/list.html";
 	}
-
+	
+	
+	@GetMapping("/list/search")
+	public String search(Model model,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword) {
+		List <BoardDto> boardDtoList = boardMapper.search(keyword);
+		int boardPostCount = boardMapper.getBoardCount();
+		model.addAttribute("boardPostCount", boardPostCount);
+		model.addAttribute("postList", boardDtoList);
+		return "board/list.html";
+	}
+	
 	@GetMapping("/post")
 	public String post() {
 		return "board/post.html";
@@ -183,7 +200,7 @@ public class BoardController {
 
 	/*********************************************** 마이페이지 *******************************************************/
 	@GetMapping("/myPage")
-	public String myPage(Model model) {
+	public String myPage(Model model,@RequestParam(value="keyword") String keyword) {
 		model.addAttribute("postList", boardRepository.findAll());
 		model.addAttribute("postList", boardMapper.findAll());
 		model.addAttribute("rentList", rentRepository.findAll());

@@ -7,15 +7,26 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import net.skhu.domain.entity.Board;
+import net.skhu.dto.BoardDto;
 
 @Mapper
 public interface BoardMapper {
 
-    @Select("SELECT *              "
+    @Select("SELECT * "
           + "FROM board "
           + "ORDER BY id DESC " )
+    
     List<Board> findAll();
+    
+    
+    @Select("SELECT *              "
+            + "FROM board "
+            + "WHERE title like '%" + "#{keyword}%' "
+            + "ORDER BY id DESC " )
+   
+      List<BoardDto> search(String keyword);
 
+    
     @Select("SELECT count(title)	"
     		+ "FROM board " )
     int getBoardCount();
