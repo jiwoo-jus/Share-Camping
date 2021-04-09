@@ -21,7 +21,7 @@ public interface BoardMapper {
     
     @Select("SELECT *              "
             + "FROM board "
-            + "WHERE title like '%'||#{keyword}||'%'"
+            + "WHERE title LIKE CONCAT('%',#{keyword}, '%') "
             + "ORDER BY id DESC " )
    
       List<Board> search(String keyword);
