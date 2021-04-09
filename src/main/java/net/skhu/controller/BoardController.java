@@ -74,7 +74,7 @@ public class BoardController {
 	
 	@GetMapping("/list/search")
 	public String search(Model model,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword) {
-		List <BoardDto> boardDtoList = boardMapper.search(keyword);
+		List <Board> boardDtoList = boardMapper.search(keyword);
 		int boardPostCount = boardMapper.getBoardCount();
 		model.addAttribute("boardPostCount", boardPostCount);
 		model.addAttribute("postList", boardDtoList);

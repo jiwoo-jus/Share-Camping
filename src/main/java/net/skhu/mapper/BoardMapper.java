@@ -21,10 +21,10 @@ public interface BoardMapper {
     
     @Select("SELECT *              "
             + "FROM board "
-            + "WHERE title like '%" + "#{keyword}%' "
+            + "WHERE title like '%'||#{keyword}||'%'"
             + "ORDER BY id DESC " )
    
-      List<BoardDto> search(String keyword);
+      List<Board> search(String keyword);
 
     
     @Select("SELECT count(title)	"
