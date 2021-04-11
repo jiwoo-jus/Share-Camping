@@ -174,7 +174,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/rentPost/rentEdit/{rent_id}")
-	public String rentEdit(@PathVariable("rent_id") Long rent_id, Model model) {
+	public String rentEdit(@PathVariable("rent_id") Long rent_id, Model model,String[] wantRent) {
 		Rent rent = rentRepository.getOne(rent_id);
 		model.addAttribute("rentPost", rent);
 
