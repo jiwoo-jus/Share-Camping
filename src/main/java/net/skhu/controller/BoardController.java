@@ -200,7 +200,7 @@ public class BoardController {
 
 	/*********************************************** 마이페이지 *******************************************************/
 	@GetMapping("/myPage")
-	public String myPage(Model model,@RequestParam(value="keyword") String keyword) {
+	public String myPage(Model model) {
 		model.addAttribute("postList", boardRepository.findAll());
 		model.addAttribute("postList", boardMapper.findAll());
 		model.addAttribute("rentList", rentRepository.findAll());

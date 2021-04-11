@@ -1,71 +1,81 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 - 글 수정</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-	crossorigin="anonymous"></script>
-<link rel='stylesheet'
-	href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
-<style>
-input#inputRent_content {
-	height: 400px;
-	vertical-align: top;
-}
-</style>
+<head>
+	<meta charset="UTF-8">
+	<title>게시판 - 글 수정</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+	<link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
+	<style>
+		input#inputRent_content {
+			height: 400px;
+			vertical-align: top;
+		}
+	</style>
 </head>
+
 <body>
 	<header th:insert="common/header1.html"></header>
 	<br>
 	<div class="container">
 		<form th:action="@{'/rentPost/rentEdit/' + ${rentPost.rent_id}}" method="post">
-			<input type="hidden" name="_method" value="put" /> <input
-				type="hidden" name="rent_id" th:value="${rentPost.rent_id}" />
+			<input type="hidden" name="_method" value="put" /> <input type="hidden" name="rent_id"
+				th:value="${rentPost.rent_id}" />
 			<div class="form-group row">
 				<label for="inputRent_title" class="col-sm-2 col-form-label"><strong>제목</strong></label>
 				<div class="col-sm-10">
-					<input type="text" name="rent_title" class="form-control"
-						id="inputRent_title" th:value="${rentPost.rent_title}">
+					<input type="text" name="rent_title" class="form-control" id="inputRent_title"
+						th:value="${rentPost.rent_title}">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputAuthor" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
 				<div class="col-sm-10">
-					<input type="text" name="author" class="form-control"
-						id="inputAuthor" th:value="${rentPost.author}">
+					<input type="text" name="author" class="form-control" id="inputAuthor"
+						th:value="${rentPost.author}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputAuthor" class="col-sm-2 col-form-label"><strong>렌트 유형</strong></label>
+				<div class="col-sm-10">
+				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+				 <label for="inlineRadio1">대여 해드립니다.</label>
+				 <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+				 <label for="inlineRadio2">대여 원해요</label>
 				</div>
 			</div>
 			
+			
+			
+		
+
 			<div class="form-group row">
 				<label for="inputAuthor" class="col-sm-2 col-form-label"><strong>사진파일</strong></label>
 				<div class="col-sm-10">
-					<input type="text" name="picture" class="form-control"
-						id="inputPicture" th:value="${rentPost.picture}">
+					<input type="text" name="picture" class="form-control" id="inputPicture"
+						th:value="${rentPost.picture}">
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="inputRent_content" class="col-sm-2 col-form-label"><strong>내용</strong></label>
 				<div class="col-sm-10">
-					<textarea rows="10" type="text" name="rent_content" class="form-control"
-						id="inputRent_content" th:text="${rentPost.rent_content}"></textarea>
+					<textarea rows="10" type="text" name="rent_content" class="form-control" id="inputRent_content"
+						th:text="${rentPost.rent_content}"></textarea>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-auto mr-auto"></div>
 				<div class="col-auto">
-					<input class="btn btn-primary" type="hidden"
-						role="uploadcare-uploader" /> <a href="/rent">
+					<input class="btn btn-primary" type="hidden" role="uploadcare-uploader" /> <a href="/rent">
 						<button class="btn btn-primary" type="submit">수정</button>
 					</a>
 				</div>
@@ -76,15 +86,15 @@ input#inputRent_content {
 	<script>
 		UPLOADCARE_PUBLIC_KEY = '5f305d8b7760c78073fa';
 	</script>
-	<script
-		src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+	<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 	<script>
 		var singleWidget = uploadcare
-				.SingleWidget('[role=uploadcare-uploader]');
-		singleWidget.onUploadComplete(function(info) {
-			document.getElementById('inputPicture').value = 
-					'<img src="'+info.cdnUrl+'">';
+			.SingleWidget('[role=uploadcare-uploader]');
+		singleWidget.onUploadComplete(function (info) {
+			document.getElementById('inputPicture').value =
+				'<img src="' + info.cdnUrl + '">';
 		});
 	</script>
 </body>
+
 </html>
