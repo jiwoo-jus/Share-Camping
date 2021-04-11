@@ -10,11 +10,11 @@
     <link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
     <script th:inline="javascript">
 			/*<![CDATA[*/
-					if(/*[[${session['user']?.author}]]*/){
+					if(/*[[${session['user']?.author}]]*/""){
 					}
 					else{
 						alert("로그인 후 이용하세요.");
-						var index = window.open(/*[[@{/index}]]*/,"_self");
+						var index = window.open(/*[[@{/index}]]*/"_self");
 					}
 			/*]]>*/
 </script>
