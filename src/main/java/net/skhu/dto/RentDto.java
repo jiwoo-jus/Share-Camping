@@ -22,6 +22,7 @@ public class RentDto {
 	private String rent_content;
 	private String picture;
 	private String price;
+	private String rent_kind;
 	private LocalDateTime rent_date;
 
 	public Rent toEntity() {
