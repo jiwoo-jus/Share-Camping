@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -49,23 +50,25 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/myPage">MyPage</a></li>
 					<li class="nav-item" th:if="${session['user']?.author != 'null'}">
 					<li class="nav-link js-scroll-trigger" href="/myPage">
-					<font color="red" th:text="${session['user']?.user_name}"> </font>님 환영합니다.&nbsp;</li>
-					 <a class="login" th:href="@{/logout}">
-         			<button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
-     				 </a>
+						<font color="red" th:text="${session['user']?.user_name}"> </font>님 환영합니다.&nbsp;
+					</li>
+					<a class="login" th:href="@{/logout}">
+						<button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
+					</a>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="assets/mail/jqBootstrapValidation.js"></script>
+	<script src="assets/mail/contact_me.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
+
 </html>
