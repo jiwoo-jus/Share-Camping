@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
    <a class="navbar-brand" href="/home"> SHARE CAMPING</a>
 
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,120 @@
       </a>
 
    </form>
+</nav>-->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Agency - Start Bootstrap Theme</title>
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+	<!-- Google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="css/styles.css" rel="stylesheet" />
+	<style>
+		div#carouselExampleCaptions {
+			width: 1350px;
+			margin: auto;
+		}
 
-</nav>
+		form.form-inline {
+			text-align: left;
+		}
+
+		button#login {
+			margin-left: 5px;
+		}
+
+		.logo {
+			width: 160px;
+			cursor: pointer;
+		}
+
+		.navbar {
+			width: 100%;
+			height: 15vh;
+			margin: auto;
+			display: flex;
+			align-items: left;
+		}
+	</style>
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
+			<img src="images/logo.png" class="logo">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu
+				<i class="fas fa-bars ml-1"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav text-uppercase ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/list">Community</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#/rent">Rent</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/myPage">MyPage</a></li>
+					<li class="nav-item" th:if="${session['user']?.author != 'null'}">
+					<li class="nav-link js-scroll-trigger" href="/myPage">
+						<font color="red" th:text="${session['user']?.user_name}"> </font>님 환영합니다.&nbsp;
+					</li>
+					<a class="login" th:href="@{/logout}">
+						<button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
+					</a>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="images/home-1.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h1>당신 근처의 셰어캠핑!</h1>
+					<p>중고거래부터 캠핑 정보까지 함께해요!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="images/home-2.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h1>캠핑 당신과 더 가까워 집니다!</h1>
+					<p>캠핑장비를 대여하는건 쉬운일이 아닙니다. 망설이는 이유는 수 없이 많습니다. 주저하지 말고 이제 시작하세요!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img th:src="@{images/home-3.jpg}" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h1>캠핑초보여도 상관없습니다.</h1>
+					<p>이것저것 경험해봤지만 생각했던데로 되는건 아니더라고요. 그래도 계속 시도하다 보면 좋은날이 오지 않을까요?</p>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+</body>
+
+</html>

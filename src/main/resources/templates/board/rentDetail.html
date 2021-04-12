@@ -57,10 +57,13 @@ input#submitComment {
 					<small class="text-muted"
 						th:text="${#temporals.format(rentPost?.rent_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
+				
+				<pre><p id="content1" class="card-text" th:text="${rentPost?.rent_kind}"></p></pre>
 
 				<pre><p id="content1" class="card-text"
 					th:text="${rentPost?.rent_content}"></p></pre>
-
+				
+				
 				<p id="content12" class="card-text" th:text="${rentPost.picture}"></p>
 				
 				<script th:inline="javascript">

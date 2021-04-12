@@ -23,6 +23,7 @@ public class RentDto {
 	private String picture;
 	private String price;
 	private LocalDateTime rent_date;
+    private String rent_kind;
 
 	public Rent toEntity() {
 		Rent build = Rent.builder()

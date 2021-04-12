@@ -35,7 +35,9 @@ public class Rent {
 
 	@Column(length = 100, nullable = false)
     private String rent_title;
-
+	
+	@Column(length = 100, nullable = false)
+    private String rent_kind;
 
 	@Column(length = 100, nullable = false)
     private String picture;
