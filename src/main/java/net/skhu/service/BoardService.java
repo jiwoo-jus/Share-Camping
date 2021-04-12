@@ -3,6 +3,10 @@ package net.skhu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +21,15 @@ import net.skhu.dto.BoardDto;
 @Service
 public class BoardService {
     private BoardRepository boardRepository;
+
+    @Autowired
+	BoardRepository boardrepository;
+
+	public Page<Board> findAll(int startAt){
+		Pageable pageable = PageRequest.of(startAt, 10);
+		return boardrepository.findAll(pageable);
+	}
+
 
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
@@ -49,7 +62,7 @@ public class BoardService {
     public List<BoardDto> getBoardList(String keyword) {
         List<Board> boardList = boardRepository.findByTitleContaining(keyword);
         List<BoardDto> boardDtoList = new ArrayList<>();
-        
+
         if (boardList.isEmpty()) return boardDtoList;
 
         for(Board board : boardList) {
@@ -57,7 +70,7 @@ public class BoardService {
         }
         return boardDtoList;
     }
-    
+
     private BoardDto convertEntityToDto(Board board) {
     	return BoardDto.builder()
         .id(board.getId())
@@ -66,7 +79,7 @@ public class BoardService {
         .content(board.getContent())
         .createdDate(board.getCreated_date())
         .build();
-    	
+
     }
 
     @Transactional

@@ -26,6 +26,7 @@ import net.skhu.domain.repository.RentCommentRepository;
 import net.skhu.domain.repository.RentRepository;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.RentMapper;
+import net.skhu.service.BoardService;
 import net.skhu.service.RentService;
 
 @SessionAttributes("user")
@@ -45,7 +46,8 @@ public class BoardController {
 	RentMapper rentMapper;
 	@Autowired
 	RentService rentService;
-
+	@Autowired
+	BoardService boardService;
 
 
 	/*********************************************** 메인페이지 *******************************************************/
@@ -64,13 +66,25 @@ public class BoardController {
 
 	/*********************************************** 커뮤니티페이지 *******************************************************/
 
+//	@GetMapping("/list")
+//	public String list(Model model) {
+//		int boardPostCount = boardMapper.getBoardCount();
+//		model.addAttribute("boardPostCount", boardPostCount);
+//		model.addAttribute("postList", boardMapper.findAll());
+//		return "board/list.html";
+//	}
+
+
 	@GetMapping("/list")
-	public String list(Model model) {
-		int boardPostCount = boardMapper.getBoardCount();
-		model.addAttribute("boardPostCount", boardPostCount);
-		model.addAttribute("postList", boardMapper.findAll());
+	public String list(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
+		Page<Board> postList = boardService.findAll(page);
+		model.addAttribute("pages", postList);
+		model.addAttribute("maxPage", 10);
+		model.addAttribute("boardPostCount", postList.getTotalElements());
+		model.addAttribute("atpage", postList.getNumber());
 		return "board/list.html";
 	}
+
 
 
 	@GetMapping("/list/search")

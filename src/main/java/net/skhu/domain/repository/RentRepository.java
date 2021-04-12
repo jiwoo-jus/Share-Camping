@@ -9,8 +9,6 @@ import net.skhu.domain.entity.Rent;
 
 public interface RentRepository extends JpaRepository<Rent, Long> {
 
-//	@Override
-//	Page<Rent> findAll(Pageable pageable);
 
 	@Override
 	@Query("SELECT r FROM Rent r ORDER BY r.rent_id DESC")
