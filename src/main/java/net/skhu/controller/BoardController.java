@@ -194,6 +194,15 @@ public class BoardController {
 
 		return "redirect:/rent";
 	}
+	
+	@GetMapping("/rent/search")
+	public String rentSearch(Model model, @RequestParam(value="keyword", defaultValue="", required=false)String keyword) {
+		List<Rent> rentList = rentMapper.searchRent(keyword);
+		int rentPostCount = rentMapper.getRentCount();
+		model.addAttribute("RentPostCount", rentPostCount);
+		model.addAttribute("rentList", rentList);
+		return "board/rent.html";
+	}
 
 
 
