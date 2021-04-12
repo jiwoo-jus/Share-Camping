@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import net.skhu.domain.entity.Board;
 import net.skhu.domain.entity.Rent;
 
 @Mapper

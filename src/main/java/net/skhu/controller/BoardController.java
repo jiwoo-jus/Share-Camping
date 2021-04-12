@@ -3,6 +3,7 @@ package net.skhu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -25,9 +24,10 @@ import net.skhu.domain.repository.BoardRepository;
 import net.skhu.domain.repository.CommunityCommentRepository;
 import net.skhu.domain.repository.RentCommentRepository;
 import net.skhu.domain.repository.RentRepository;
-import net.skhu.dto.BoardDto;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.RentMapper;
+import net.skhu.service.BoardService;
+import net.skhu.service.RentService;
 
 @SessionAttributes("user")
 @Controller
@@ -44,8 +44,10 @@ public class BoardController {
 	BoardMapper boardMapper;
 	@Autowired
 	RentMapper rentMapper;
-
-
+	@Autowired
+	RentService rentService;
+	@Autowired
+	BoardService boardService;
 
 	/*********************************************** 메인페이지 *******************************************************/
 	@GetMapping("/")
@@ -64,13 +66,14 @@ public class BoardController {
 	/*********************************************** 커뮤니티페이지 *******************************************************/
 	
 	@GetMapping("/list")
-	public String list(Model model) {
-		int boardPostCount = boardMapper.getBoardCount();
-		model.addAttribute("boardPostCount", boardPostCount);
-		model.addAttribute("postList", boardMapper.findAll());
+	public String list(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
+		Page<Board> postList = boardService.findAll(page);
+		model.addAttribute("pages", postList);
+		model.addAttribute("maxPage", 10);
+		model.addAttribute("boardPostCount", postList.getTotalElements());
+		model.addAttribute("atpage", postList.getNumber());
 		return "board/list.html";
 	}
-	
 	
 	@GetMapping("/list/search")
 	public String search(Model model,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword) {
@@ -137,11 +140,12 @@ public class BoardController {
 
 	/*********************************************** 렌트페이지 *******************************************************/
 	@GetMapping("/rent")
-	public String rent(Model model) {
+	public String rentlist(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
 		String nullimage = "<img src=\"images/nullimage.png\">";
 		model.addAttribute("nullimage", nullimage);
-		model.addAttribute("rentList", rentRepository.findAll());
-		model.addAttribute("rentList", rentMapper.findAll());
+		Page<Rent> rentList = rentService.findAll(page);
+		model.addAttribute("pages", rentList);
+		model.addAttribute("maxPage", 10);
 		return "board/rent.html";
 	}
 

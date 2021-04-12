@@ -57,7 +57,7 @@
 			</colgroup>
 			<thead class="thead-light">
 				<tr class="text-center">
-					<th scope="col">번호</th>
+					<th scope="col">글번호</th>
 					<th scope="col">제목</th>
 					<th scope="col">작성자</th>
 					<th scope="col">작성일</th>
@@ -69,13 +69,15 @@
 				<script th:inline="javascript">
 					/*<![CDATA[*/
 					var query = /*[[${boardPostCount}]]*/
+					var atpage = /*[[${atpage}]]*/
+					var order = atpage * 10
     		/*]]>*/
 				</script>
 
-				<tr class="text-center" th:each="post : ${postList}">
+				<tr class="text-center" th:each="post : ${pages}">
 					<th>
 						<script th:inline="javascript">
-								document.write(query--, '<br>');
+							document.write(query - order++, '<br>');
 						</script>
 					</th>
 					<td>
@@ -92,23 +94,30 @@
         </tr>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <div class="page-num" th:with="start=${(pages.number/maxPage)*maxPage + 1}, end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})" >
+		    <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+     </li>		    
+		    <li class="page-item" th:if="${start > 1}">
+		    	<a class="page-link" href="#" th:href="@{/list?(page=0)}" th:text="'<<'"></a></li>
+	        <li class="page-item" th:if="${start > 1}">
+	            <a class="page-link" href="#" th:href="@{/list?(page=${start - maxPage})}" th:text="'<'"></a></li>
+	        <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}">
+	            <a class="page-link" href="#" th:href="@{/list?(page=${page-1})}" th:text="${page}"></a></li>
+	        <li class="page-item" th:if="${end < pages.totalPages}">
+	            <a class="page-link" href="#" th:href="@{/list?(page=${start + maxPage})}" th:text="'>'"></a></li>
+	        <li class="page-item" th:if="${end < pages.totalPages}">
+	            <a class="page-link" href="#" th:href="@{/list?(page=${pages.totalPages-1})}" th:text="'>>'"></a></li>
+	        <li class="page-item">
+	      <a class="page-link" href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span></a></li>
+	        </ul>
 </nav>
+    </div>
     <div class="row">
         <div class="col-auto mr-auto"></div>
         <div class="col-auto">

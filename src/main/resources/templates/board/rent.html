@@ -79,7 +79,7 @@
 </head>
 
 <body>
-	<header th:insert="common/header1.html"></header>
+	<header th:insert="common/header.html"></header>
 	<div class="smallContainer">
 		<br>
 		<h3>렌트
@@ -89,11 +89,12 @@
 		<hr>
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline" method="get" action="/rent/search">
-				<input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+				<input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search"
+					aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</nav>
-		<div class="card" style="" th:each="rent : ${rentList}">
+		<div class="card" style="" th:each="rent : ${pages}">
 			<a th:href="@{'/rentPost/' + ${rent.rent_id}}">
 
 				<p th:id="${rent.rent_id}" class="card-text"
@@ -134,24 +135,30 @@
 
 
       </div>
-      <nav aria-label="Page navigation example">
+      <div class="page-num" th:with="start=${(pages.number/maxPage)*maxPage + 1}, end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})" >
+		    <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+    </li>		    
+		    <li class="page-item" th:if="${start > 1}">
+		    	<a class="page-link" href="#" th:href="@{/rent?(page=0)}" th:text="'<<'"></a></li>
+	        <li class="page-item" th:if="${start > 1}">
+	            <a class="page-link" href="#" th:href="@{/rent?(page=${start - maxPage})}" th:text="'<'"></a></li>
+	        <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}">
+	            <a class="page-link" href="#" th:href="@{/rent?(page=${page-1})}" th:text="${page}"></a></li>
+	        <li class="page-item" th:if="${end < pages.totalPages}">
+	            <a class="page-link" href="#" th:href="@{/rent?(page=${start + maxPage})}" th:text="'>'"></a></li>
+	        <li class="page-item" th:if="${end < pages.totalPages}">
+	            <a class="page-link" href="#" th:href="@{/rent?(page=${pages.totalPages-1})}" th:text="'>>'"></a></li>
+	        <li class="page-item">
+	      <a class="page-link" href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span></a></li>
+	        </ul>
 </nav>
-
+      </div>
       <div class="row">
          <div class="col-auto mr-auto"></div>
          <div class="col-auto">

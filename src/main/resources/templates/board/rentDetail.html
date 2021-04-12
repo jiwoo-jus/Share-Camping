@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title th:text="@{'게시판 - ' + ${rentPost?.rent_title}}"></title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title th:text="@{'게시판 - ' + ${rentPost?.rent_title}}"></title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-	crossorigin="anonymous"></script>
-<style>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+	<link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
+	<style>
+		textarea#inputAuthor {
+			background-color: white;
+			width: 15%
+		}
 
-textarea#inputAuthor{
- 	background-color:white;
-	width:15%
-}
-textarea#inputRent_id{
-	visibility: hidden
-}
+		textarea#inputRent_id {
+			visibility: hidden
+		}
 
-img#fromContent {
-	width: 450p;
-	height: 450px;
-	margin: auto;
-}
+		img#fromContent {
+			width: 450p;
+			height: 450px;
+			margin: auto;
+		}
 
-textarea#inputComment {
-	display: inline;
-	width: 80%;
-}
+		textarea#inputComment {
+			display: inline;
+			width: 80%;
+		}
 
-input#submitComment {
-	display: inline-block;
-	width: 15%;
-	margin-bottom: 80px;
-	margin-left: 20px;
-}
-</style>
+		input#submitComment {
+			display: inline-block;
+			width: 15%;
+			margin-bottom: 80px;
+			margin-left: 20px;
+		}
+
+		.logo {
+			width: 160px;
+			cursor: pointer;
+		}
+
+		.navbar {
+			width: 100%;
+			height: 15vh;
+			margin: auto;
+			display: flex;
+			align-items: left;
+		}
+	</style>
 </head>
+
 <body>
-	<header th:insert="common/header1.html"></header>
+<header th:insert="common/header1.html"></header>
 	<br>
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
 
-				<h5 class="card-title"
-					th:text="@{${rentPost?.rent_title} + ' - ' + ${rentPost?.author}}"></h5>
+				<h5 class="card-title" th:text="@{${rentPost?.rent_title} + ' - ' + ${rentPost?.author}}"></h5>
 				<p class="card-text">
-					<small class="text-muted"
-						th:text="${#temporals.format(rentPost?.rent_date, 'yyyy-MM-dd HH:mm')}"></small>
+					<small class="text-muted" th:text="${#temporals.format(rentPost?.rent_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
 				
 				<pre><p id="content1" class="card-text" th:text="${rentPost?.rent_kind}"></p></pre>
@@ -67,26 +78,26 @@ input#submitComment {
 				<p id="content12" class="card-text" th:text="${rentPost.picture}"></p>
 				
 				<script th:inline="javascript">
-			/*<![CDATA[*/
+					/*<![CDATA[*/
 					var searchIndex = 0;
-					
+
 					var content1 = document.getElementById("content12");
 					var content = content1.innerHTML;
-					
-					
-					
-					
+
+
+
+
 					var firstIndex = content.indexOf("&lt;img", searchIndex);
 					var lastIndex = content.indexOf("&gt;", searchIndex + 4);
 					var imgContent = content.slice(firstIndex + 7, lastIndex);
 					if (firstIndex != -1)
-						document.write("<img class='picture' width='500px' height='400px'"+imgContent+">");
-		
+						document.write("<img class='picture' width='500px' height='400px'" + imgContent + ">");
+
 					content1.innerHTML = "";
 					searchIndex = lastIndex;
 					i = lastIndex;
 			/*]]>*/
-			</script>
+				</script>
 			</div>
 		</div>
 		

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import net.skhu.domain.entity.Board;
-import net.skhu.dto.BoardDto;
+
 
 @Mapper
 public interface BoardMapper {
