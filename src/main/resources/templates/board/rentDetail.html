@@ -63,9 +63,11 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
-
-				<h5 class="card-title" th:text="@{'['+${rentPost?.rent_kind}+']'+${rentPost?.rent_title} + ' - ' + ${rentPost?.author}}"></h5>
+				<h5 class="card-title" style="color:#FF0000;" th:text=${rentPost?.rent_kind}></h5>
+				<h5 class="card-title" th:text=${rentPost?.rent_title}></h5>
+				
 				<p class="card-text">
+					<small class="text-muted" th:text=${rentPost?.author}></small>
 					<small class="text-muted" th:text="${#temporals.format(rentPost?.rent_date, 'yyyy-MM-dd HH:mm')}"></small>
 				</p>
 				
