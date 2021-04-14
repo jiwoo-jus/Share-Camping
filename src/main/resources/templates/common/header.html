@@ -15,18 +15,57 @@
 	<link href="css/styles.css" rel="stylesheet" />
 	<style>
         div#carouselExampleCaptions{
-		height:65vh;
+		height:72vh;
 		width:100%; 
 		margin:auto;
 		background-position:center;
+		}
+		.logo {
+			width: 160px;
+			cursor: pointer;
+		}
+
+		.navbar {
+			width: 100%;
+			height: 15vh;
+			margin: auto;
+			display: flex;
+			align-items: left;
 		}
 		
         form.form-inline{text-align:left;}
         button#login {margin-left : 5px;}
     </style>
 </head>
-<body>
-	<header th:insert="common/header1.html"></header>
+<body id="page-top">
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
+			<img src="images/logo.png" class="logo">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu
+				<i class="fas fa-bars ml-1"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav text-uppercase ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" style="color:#B89063;" href="/list">Community</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" style="color:#B89063;"href="/rent">Rent</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" style="color:#B89063;"href="/myPage">MyPage</a></li>
+					<li class="nav-item" th:if="${session['user']?.author != 'null'}">
+					<li class="nav-link js-scroll-trigger"  style="color:#B89063;" href="/myPage">
+					<font color="red" th:text="${session['user']?.user_name}"> </font>님 환영합니다.&nbsp;
+					</li>
+					<a class="login" th:href="@{/logout}">
+						<button id="login" class="btn btn-outline-success my-2 my-sm-0" type="button">로그아웃</button>
+					</a>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
 	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     	<ol class="carousel-indicators">
         	<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
