@@ -35,12 +35,18 @@ public class Rent {
 
 	@Column(length = 100, nullable = false)
     private String rent_title;
-	
+
 	@Column(length = 100, nullable = false)
     private String rent_kind;
 
 	@Column(length = 100, nullable = false)
     private String picture;
+
+	@Column(length = 100, nullable = false)
+    private String rent_location;
+
+	@Column(length = 100, nullable = false)
+    private String rent_price;
 
 	@Column(columnDefinition = "TEXT", nullable = false)
     private String rent_content;

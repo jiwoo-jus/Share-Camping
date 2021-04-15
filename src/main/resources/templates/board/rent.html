@@ -87,11 +87,9 @@
 			<a href="/rent">
 				<button type="button" class="btn btn-outline-primary">#전체</button>
 			</a>
-			
 			<a href="/rentCamper">
 				<button type="button" class="btn btn-outline-primary">#대여 해드립니다</button>
 			</a>
-			
 			<a href="/rentRender">
 				<button type="button" class="btn btn-outline-primary">#대여 원해요</button>
 			</a>
@@ -141,9 +139,9 @@
 
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item" style="color:#FF0000;" th:text=${rent.rent_kind}></li>
+				<li class="list-group-item" th:text=${rent.rent_price}></li>
+				<li class="list-group-item" th:text=${rent.rent_location}></li>				
 				<li class="list-group-item" th:text="${#temporals.format(rent.rent_date, 'yyyy-MM-dd HH:mm')}"></li>
-            <li class="list-group-item" th:text="${rent.author}"></li>
-
          </ul>
 
 
