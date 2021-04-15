@@ -64,7 +64,7 @@ public class BoardController {
 
 
 	/*********************************************** 커뮤니티페이지 *******************************************************/
-	
+
 	@GetMapping("/list")
 	public String list(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
 		Page<Board> postList = boardService.findAll(page);
@@ -74,7 +74,7 @@ public class BoardController {
 		model.addAttribute("atpage", postList.getNumber());
 		return "board/list.html";
 	}
-	
+
 	@GetMapping("/list/search")
 	public String search(Model model,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword) {
 		List <Board> boardDtoList = boardMapper.search(keyword);
@@ -83,7 +83,7 @@ public class BoardController {
 		model.addAttribute("postList", boardDtoList);
 		return "board/list.html";
 	}
-	
+
 	@GetMapping("/post")
 	public String post() {
 		return "board/post.html";
@@ -140,7 +140,7 @@ public class BoardController {
 
 	/*********************************************** 렌트페이지 *******************************************************/
 	@GetMapping("/rent")
-	public String rentlist(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
+	public String rentAll(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
 		String nullimage = "<img src=\"images/nullimage.png\">";
 		model.addAttribute("nullimage", nullimage);
 		Page<Rent> rentList = rentService.findAll(page);
@@ -148,6 +148,26 @@ public class BoardController {
 		model.addAttribute("maxPage", 10);
 		return "board/rent.html";
 	}
+	@GetMapping("/rentCamper")
+	public String rentCamper(@RequestParam(value = "page", defaultValue = "0") int page, Model model)  {
+		String nullimage = "<img src=\"images/nullimage.png\">";
+		model.addAttribute("nullimage", nullimage);
+		Page<Rent> rentList = rentService.findRendIt2Who(page, "#대여 해드립니다");
+		model.addAttribute("pages", rentList);
+		model.addAttribute("maxPage", 10);
+		return "board/rent.html";
+	}
+
+	@GetMapping("/rentRender")
+	public String rentRender(@RequestParam(value = "page", defaultValue = "0") int page, Model model)  {
+		String nullimage = "<img src=\"images/nullimage.png\">";
+		model.addAttribute("nullimage", nullimage);
+		Page<Rent> rentList = rentService.findRendIt2Who(page, "#대여 원해요");
+		model.addAttribute("pages", rentList);
+		model.addAttribute("maxPage", 10);
+		return "board/rent.html";
+	}
+
 
 	@GetMapping("/rentPost")
 	public String rentPost(Model model) {
@@ -198,7 +218,7 @@ public class BoardController {
 
 		return "redirect:/rent";
 	}
-	
+
 	@GetMapping("/rent/search")
 	public String rentSearch(Model model, @RequestParam(value="keyword", defaultValue="", required=false)String keyword) {
 		List<Rent> rentList = rentMapper.searchRent(keyword);

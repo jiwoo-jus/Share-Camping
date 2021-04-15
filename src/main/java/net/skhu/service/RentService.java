@@ -20,4 +20,8 @@ public class RentService {
 		return rentrepository.findAll(pageable);
 	}
 
+	public Page<Rent> findRendIt2Who(int startAt, String rent_type){
+		Pageable pageable = PageRequest.of(startAt, 9);
+		return rentrepository.findRendIt2Who(pageable, rent_type);
+	}
 }
