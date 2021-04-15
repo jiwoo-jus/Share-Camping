@@ -16,12 +16,12 @@ public class RentService {
 	RentRepository rentrepository;
 
 	public Page<Rent> findAll(int startAt){
-		Pageable pageable = PageRequest.of(startAt, 9);
+		Pageable pageable = PageRequest.of(startAt, 12);
 		return rentrepository.findAll(pageable);
 	}
 
 	public Page<Rent> findRendIt2Who(int startAt, String rent_type){
-		Pageable pageable = PageRequest.of(startAt, 9);
+		Pageable pageable = PageRequest.of(startAt, 12);
 		return rentrepository.findRendIt2Who(pageable, rent_type);
 	}
 }
