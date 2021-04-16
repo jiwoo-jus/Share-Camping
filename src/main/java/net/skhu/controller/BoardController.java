@@ -132,19 +132,9 @@ public class BoardController {
 
 	/*********************************************** 렌트페이지 *******************************************************/
 	@GetMapping("/rent")
-	public String rentAll(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
+	public String rentAll(@RequestParam(value = "page", defaultValue = "0") int page,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword, Model model) {
 		String nullimage = "<img src=\"images/nullimage.png\">";
 		model.addAttribute("nullimage", nullimage);
-		Page<Rent> rentList = rentService.findAll(page);
-		model.addAttribute("pages", rentList);
-		model.addAttribute("maxPage", 10);
-		return "board/rent.html";
-	}
-	
-	@GetMapping("/rent/search")
-	public String search(Model model,
-			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value="keyword", defaultValue = "",required = false) String keyword){ 
 		Page<Rent> rentList = rentService.search(page, keyword);
 		model.addAttribute("pages", rentList);
 		model.addAttribute("maxPage", 10);
@@ -152,8 +142,6 @@ public class BoardController {
 		model.addAttribute("atpage", rentList.getNumber());
 		return "board/rent.html";
 	}
-	
-	
 	
 	@GetMapping("/rentCamper")
 	public String rentCamper(@RequestParam(value = "page", defaultValue = "0") int page, Model model)  {
