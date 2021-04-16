@@ -24,6 +24,7 @@ input#inputContent {
 }
 .container{
 	margin: 100px;
+	margin-left: 20%;
  }
 
 </style>
@@ -31,7 +32,9 @@ input#inputContent {
 <body>
 <header th:insert="common/navigation.html"></header>
 	<br>
-	<div class="container">
+	<div class="container" style="display: table; margin-left: 20%; margin-top: 5%">
+		<h3>COMMUNITY</h3>
+		<hr>
 		<form th:action="@{'/post/edit/' + ${post.id}}" method="post">
 
 		
