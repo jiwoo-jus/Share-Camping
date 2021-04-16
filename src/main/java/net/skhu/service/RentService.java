@@ -24,4 +24,9 @@ public class RentService {
 		Pageable pageable = PageRequest.of(startAt, 12);
 		return rentrepository.findRendIt2Who(pageable, rent_type);
 	}
+	
+	public Page<Rent> search(int startAt, String keyword){
+   		Pageable pageable = PageRequest.of(startAt, 10);
+   		return rentrepository.search(pageable, keyword);
+   	}
 }

@@ -140,6 +140,21 @@ public class BoardController {
 		model.addAttribute("maxPage", 10);
 		return "board/rent.html";
 	}
+	
+	@GetMapping("/rent/search")
+	public String search(Model model,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value="keyword", defaultValue = "",required = false) String keyword){ 
+		Page<Rent> rentList = rentService.search(page, keyword);
+		model.addAttribute("pages", rentList);
+		model.addAttribute("maxPage", 10);
+		model.addAttribute("boardPostCount", rentList.getTotalElements());
+		model.addAttribute("atpage", rentList.getNumber());
+		return "board/rent.html";
+	}
+	
+	
+	
 	@GetMapping("/rentCamper")
 	public String rentCamper(@RequestParam(value = "page", defaultValue = "0") int page, Model model)  {
 		String nullimage = "<img src=\"images/nullimage.png\">";
@@ -209,15 +224,6 @@ public class BoardController {
 		rentMapper.deleteRent(rent_id);
 
 		return "redirect:/rent";
-	}
-
-	@GetMapping("/rent/search")
-	public String rentSearch(Model model, @RequestParam(value="keyword", defaultValue="", required=false)String keyword) {
-		List<Rent> rentList = rentMapper.searchRent(keyword);
-		int rentPostCount = rentMapper.getRentCount();
-		model.addAttribute("RentPostCount", rentPostCount);
-		model.addAttribute("rentList", rentList);
-		return "board/rent.html";
 	}
 
 

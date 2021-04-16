@@ -15,5 +15,6 @@ public interface RentRepository extends JpaRepository<Rent, Long> {
 	@Query("SELECT r FROM Rent r WHERE r.rent_kind = :rent_type ORDER BY r.rent_id DESC")
     Page<Rent> findRendIt2Who(Pageable pageable, String rent_type);
 
-
+	@Query("SELECT r FROM Rent r WHERE r.rent_title LIKE '%'||:keyword||'%' ORDER BY r.rent_id DESC")
+	Page<Rent> search(Pageable pageable, String keyword);
 }
