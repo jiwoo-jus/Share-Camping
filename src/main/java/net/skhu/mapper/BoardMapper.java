@@ -26,7 +26,6 @@ public interface BoardMapper {
    
       List<Board> search(String keyword);
 
-    
     @Select("SELECT count(title)	"
     		+ "FROM board " )
     int getBoardCount();

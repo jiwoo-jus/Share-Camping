@@ -17,4 +17,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	@Query("SELECT b FROM Board b ORDER BY b.id DESC")
     Page<Board> findAll(Pageable pageable);
 
+	@Query("SELECT b FROM Board b WHERE b.title LIKE '%'||:keyword||'%' ORDER BY b.id DESC")
+	Page<Board> search(Pageable pageable, String keyword);
 }

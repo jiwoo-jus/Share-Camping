@@ -33,6 +33,11 @@ public class BoardService {
    		Pageable pageable = PageRequest.of(startAt, 10);
    		return boardrepository.findAll(pageable);
    	}
+   	
+	public Page<Board> search(int startAt, String keyword){
+   		Pageable pageable = PageRequest.of(startAt, 10);
+   		return boardrepository.search(pageable, keyword);
+   	}
 
     @Transactional
     public Long savePost(BoardDto boardDto) {

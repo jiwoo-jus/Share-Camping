@@ -66,8 +66,8 @@ public class BoardController {
 	/*********************************************** 커뮤니티페이지 *******************************************************/
 
 	@GetMapping("/list")
-	public String list(@RequestParam(value = "page", defaultValue = "0") int page, Model model) {
-		Page<Board> postList = boardService.findAll(page);
+	public String list(@RequestParam(value = "page", defaultValue = "0") int page,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword, Model model) {
+		Page<Board> postList = boardService.search(page, keyword);
 		model.addAttribute("pages", postList);
 		model.addAttribute("maxPage", 10);
 		model.addAttribute("boardPostCount", postList.getTotalElements());
@@ -75,14 +75,6 @@ public class BoardController {
 		return "board/list.html";
 	}
 
-	@GetMapping("/list/search")
-	public String search(Model model,@RequestParam(value="keyword", defaultValue = "",required = false) String keyword) {
-		List <Board> boardDtoList = boardMapper.search(keyword);
-		int boardPostCount = boardMapper.getBoardCount();
-		model.addAttribute("boardPostCount", boardPostCount);
-		model.addAttribute("postList", boardDtoList);
-		return "board/list.html";
-	}
 
 	@GetMapping("/post")
 	public String post() {
