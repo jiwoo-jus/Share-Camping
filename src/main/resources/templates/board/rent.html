@@ -91,11 +91,31 @@
 <body>
 	<header th:insert="common/header.html"></header>
 	<div class="smallContainer">
+		<br>		
 		<br>
-		<h3>렌트
-	
+		<br>
+		<br>
+		<nav class="navbar navbar-light bg-light form-inline" style="display: flex;">
+
+			<span> <a href="/rent">
+					<button type="button" class="btn btn-outline-primary">#전체</button>
+			</a> <a href="/rentCamper">
+					<button type="button" class="btn btn-outline-primary">#대여 해드립니다</button>
+			</a> <a href="/rentRender">
+					<button type="button" class="btn btn-outline-primary">#대여 원해요</button>
+			</a>
+			</span>
+			<form method="get" action="/rent">
+				<input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</nav>
+
+
+
+		<!-- 		<h3>렌트
 			<a href="/rent">
-				<button type="button" class="btn btn-outline-primary">#전체</button>
+				<button type="button" class="btn btn-outline-primary" >#전체</button>
 			</a>
 			<a href="/rentCamper">
 				<button type="button" class="btn btn-outline-primary">#대여 해드립니다</button>
@@ -103,17 +123,20 @@
 			<a href="/rentRender">
 				<button type="button" class="btn btn-outline-primary">#대여 원해요</button>
 			</a>
-			
-			
 		</h3>
+		
 		<hr>
+		
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline" method="get" action="/rent" style="display: table; margin-left: 65%;">
 				<input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search"
 					aria-label="Search">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit" >Search</button>
 			</form>
-		</nav>
+		</nav> -->
+		
+		
+		
 		<div class="card" style="" th:each="rent : ${pages}">
 			<a th:href="@{'/rentPost/' + ${rent.rent_id}}">
 
