@@ -21,6 +21,7 @@
 		}
 		.container{
 			margin: 100px;
+			margin-left: 20%;
  		}
 	</style>
 </head>
@@ -28,7 +29,9 @@
 <body>
 <header th:insert="common/navigation.html"></header>
 	<br>
-	<div class="container">
+	<div class="container"style="display: table; margin-left: 20%; margin-top: 5%">
+		<h3>RENT</h3>
+		<hr>
 		<form th:action="@{'/rentPost/rentEdit/' + ${rentPost.rent_id}}" method="post">
 			<input type="hidden" name="_method" value="put" /> <input type="hidden" name="rent_id"
 				th:value="${rentPost.rent_id}" />
