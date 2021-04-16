@@ -43,14 +43,16 @@ input#submitComment {
 
 .container{
 	margin: 100px;
+	 margin-left: 20%;
  }
 
 </style>
 </head>
 <body>
-<header th:insert="common/navigation.html"></header>
+<header th:insert="common/navigation.html" ></header>
    <br>
-   <div class="container">
+   <div class="container" style="display: table; margin-left: 20%; margin-top: 5%">
+<hr>
       <div class="card">
          <div class="card-body">
             <h5 class="card-title" th:text="@{${post.title} + ' - ' + ${post.author}}"></h5>
@@ -103,7 +105,7 @@ input#submitComment {
          </div>
       </div>
       <hr>
-      <div class="inputComment">
+      <div class="inputComment" >
          <form action="/communityCommentPost" method="post">
             <div class="col-sm">
                <textarea type="text" name="id" class="form-control" rows="1" th:text="${post.id}" id="inputId" readonly></textarea>
